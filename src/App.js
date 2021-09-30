@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+
+import { Logo } from './components';
+import { Content } from './pages';
+import colours from './data/colours';
 
 function App() {
+  useEffect(() => {
+    document.body.style.backgroundColor = colours.background;
+    document.body.style.fontFamily = 'Roboto, sans-serif';
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Logo></Logo>
+      <Content></Content>
+    </>
   );
 }
 

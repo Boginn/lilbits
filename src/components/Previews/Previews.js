@@ -4,10 +4,11 @@ import { content } from '../../data/data';
 
 const Previews = () => {
   const items = content.previews.items;
+
   return (
     <Wrapper>
       <Container>
-        <Carousel>
+        <Carousel slide={false} stopAutoPlayOnHover={true} interval={8000}>
           {items.map((item, i) => (
             <Image
               key={i}

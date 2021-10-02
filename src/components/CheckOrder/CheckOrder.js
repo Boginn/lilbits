@@ -1,12 +1,16 @@
-import { Wrapper, Container } from './styles';
+import { Wrapper, Container, Title, SubTitle } from './styles';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
+import { content } from '../../data/data';
 
 const CheckOrder = () => {
+  const title = content.checkOrder.title;
+  const subTitle = content.checkOrder.subTitle;
   return (
     <Wrapper>
       <Container>
-        <div>Check your Order</div>
+        <Title>{title}</Title>
+        <SubTitle>{subTitle}</SubTitle>
         <Input type="text" />
         <Button variant="contained">Check</Button>
       </Container>

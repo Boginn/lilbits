@@ -14,6 +14,5 @@ export const Image = styled(Item)`
   height: 600px;
 
   min-width: 100%;
-  background-color: ${colours.secondary};
   object-fit: contain;
 `;

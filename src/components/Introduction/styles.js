@@ -4,8 +4,8 @@ import colours from '../../data/colours';
 export const Wrapper = styled.div``;
 
 export const Container = styled.div`
-  border: 1px solid black;
-  box-shadow: -2px 2px 2px 0px black;
+  border: 1px solid white;
+  box-shadow: -2px 2px 2px 0px white;
 
   width: 100%;
   padding: 15px;

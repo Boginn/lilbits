@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <Wrapper>
       <DividerLine />
-      <ContactInfo>contactinfo</ContactInfo>
+      <ContactInfo></ContactInfo>
     </Wrapper>
   );
 };

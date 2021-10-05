@@ -10,16 +10,21 @@ function App() {
   useEffect(() => {
     document.body.style.backgroundColor = colours.background;
     document.body.style.fontFamily = 'Roboto, sans-serif';
+    localStorage.clear();
   });
+
   return (
     <>
       <Router>
         <Logo></Logo>
         <Navigation />
-
         <Switch>
-          <Route exact path="/" component={Content} />
-          <Route exact path="/order" component={Order} />
+          <Route path="/order">
+            <Order />
+          </Route>
+          <Route path="/">
+            <Content />
+          </Route>
         </Switch>
         <Footer />
       </Router>

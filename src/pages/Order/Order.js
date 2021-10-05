@@ -1,39 +1,33 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Grid from '@mui/material/Grid';
-// import { Categories } from '../../components';
-import { User } from '../../components';
+import { Receipt, Beverage, Dish, Form } from '../../components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useRouteMatch,
+} from 'react-router-dom';
 
 import { Wrapper, Container } from './styles';
 
-// import {
-//   CheckOrder,
-//   Previews,
-//   Delivery,
-//   Introduction,
-// } from '../../components';
-
 const Order = () => {
-  const [state, setState] = useState({
-    dish: null,
-    categories: null,
-  });
-  const { categories } = state;
+  const [dish, setDish] = useState({});
+  const [categories, setCategories] = useState({});
+  // const [state, setState] = useState({
+  //   form: true,
+  //   dish: false,
+  // });
 
-  // const getRandomDish = async () => {
-  //   try {
-  //     const result = await axios.get(
-  //       'https://themealdb.com/api/json/v1/1/random.php'
-  //     );
-  //     setState({
-  //       ...state,
-  //       dish: result.data,
-  //     });
-  //     console.log(result.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const getRandomDish = async () => {
+    try {
+      const result = await axios.get(
+        'https://themealdb.com/api/json/v1/1/random.php'
+      );
+      setDish(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // const getDishByName = async (meal) => {
   //   try {
@@ -76,36 +70,59 @@ const Order = () => {
         (word) => word.idCategory != '13' && word.idCategory != '14'
       );
 
-      setState({
-        ...state,
-        categories: result,
-      });
-      console.log(result.data.categories);
+      setCategories(result);
     } catch (e) {
       console.log(e);
     }
   };
 
   useEffect(() => {
-    // getRandomDish();
+    getRandomDish();
     // getDishByName('Arrabiata');
     // getDishById(52772);
     getMealCategories();
-    console.log(categories);
+
+    // TODO
+    // history.push('/order/form');
+    // cant on unmounted but cant use componentDidMount?
   }, []);
 
+  // useEffect(() => {
+  //   // TODO
+  //   // history.push('/order/form');
+  //   // if(x) {
+  //   //  do
+  //  // }
+  // }, [x]);
+
+  const match = useRouteMatch(); // !
+  console.log(match);
+
   return (
-    <Wrapper>
-      <Container>
-        <User />
-        <Grid container spacing={6}>
-          <Grid item xs={8}></Grid>
-          {/* <Grid item xs={8}></Grid>
-          <Grid item xs={8}></Grid>
-          <Grid item xs={4}></Grid> */}
-        </Grid>
-      </Container>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Container>
+          <Switch>
+            <Route path="/order/receipt">
+              <Receipt />
+            </Route>
+            <Route path="/order/beverage">
+              <Beverage categories={categories} dish={dish} />
+            </Route>
+            <Route path="/order/dish">
+              <Dish
+                getRandomDish={getRandomDish}
+                categories={categories}
+                dish={dish}
+              />
+            </Route>
+            <Route path={`${match.path}/`}>
+              <Form />
+            </Route>
+          </Switch>
+        </Container>
+      </Wrapper>
+    </Router>
   );
 };
 

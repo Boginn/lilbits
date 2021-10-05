@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   padding-right: 175px;
   padding-top: 25px;
   padding-bottom: 25px;
-
   /* background-color: ${colours.primary}; */
 `;
 

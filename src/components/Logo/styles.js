@@ -12,5 +12,5 @@ export const Wrapper = styled.header`
 export const Image = styled.img`
   height: 500px;
   margin-top: -120px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
 `;

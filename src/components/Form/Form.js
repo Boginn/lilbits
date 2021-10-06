@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import { useHistory } from 'react-router-dom';
-// import { useContext } from 'react';
+import { useState } from 'react';
 
-// import { OrderContext } from '../../pages/Order/Order';
 import {
   Wrapper,
   Container,
@@ -17,21 +16,27 @@ import {
 import Dates from '../Dates';
 
 const Form = () => {
-  // try calling it props
-  // try deconstructing
-  // const context = useContext(OrderContext);
   const history = useHistory();
+
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (d) => {
     localStorage.setItem('form', JSON.stringify(d));
-    const res = JSON.parse(localStorage.getItem('form'));
-    console.log(res);
+    // NEXT step
     history.push('/order/dish');
-    // TODO Save this to the state?
+    // const res = JSON.parse(localStorage.getItem('form'));
+    // console.log(res);
+  };
+
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const dateDone = () => {
+    setSubmitDisabled(false);
+  };
+  const dateUnDone = () => {
+    setSubmitDisabled(true);
   };
 
   return (
-    // <OrderContext.Consumer>
     <Wrapper>
       <Grid container spacing={6} style={{ justifyContent: 'center' }}>
         <Grid item xs={4}>
@@ -39,27 +44,48 @@ const Form = () => {
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
               <Label>
                 Name
-                <InputField {...register('name')} type="text" />
+                <InputField
+                  color={'warning'}
+                  {...register('name')}
+                  type="text"
+                />
               </Label>
               <Label>
                 Phone Number
-                <InputField {...register('number')} type="number" />
+                <InputField
+                  color={'warning'}
+                  {...register('number')}
+                  type="number"
+                />
               </Label>
               <Label>
                 E-Mail Address
-                <InputField {...register('mail')} type="text" />
+                <InputField
+                  color={'warning'}
+                  {...register('mail')}
+                  type="text"
+                />
               </Label>
               <Label>
                 Occasion
-                <InputField {...register('event')} type="text" />
+                <InputField
+                  color={'warning'}
+                  {...register('event')}
+                  type="text"
+                />
               </Label>
               <Label>
                 Estimated amount of guests
-                <InputField {...register('guests')} type="text" />
+                <InputField
+                  color={'warning'}
+                  {...register('guests')}
+                  type="text"
+                />
               </Label>
               <Label>
                 Anything else you would like to specify
                 <TextArea
+                  color={'warning'}
                   {...register('other')}
                   multiline
                   rows={2}
@@ -67,20 +93,23 @@ const Form = () => {
                   type="text"
                 />
               </Label>
-              {/* // TODO: disabled if no date etc */}
-              <Btn type="submit" variant="contained">
-                Submit
-              </Btn>
             </FormWrapper>
           </Container>
         </Grid>
         <Grid item xs={4}>
           <Container>
-            <Dates />
+            <Dates done={dateDone} unDone={dateUnDone} />
           </Container>
         </Grid>
-        <Grid item xs={8}></Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={8}>
+          <Btn
+            type="submit"
+            disabled={submitDisabled}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Submit
+          </Btn>
+        </Grid>
       </Grid>
     </Wrapper>
   );

@@ -14,7 +14,7 @@ const Previews = () => {
               key={i}
               item={item}
               alt={item.description}
-              style={{ backgroundImage: `url(${item.link})` }}
+              style={{ background: `url(${item.link})` }}
             ></Image>
           ))}
         </Carousel>

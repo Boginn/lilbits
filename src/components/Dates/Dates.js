@@ -1,49 +1,83 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { Wrapper, Btn, Selection } from './styles';
+import { Wrapper, Btn, Message } from './styles';
+import { useState } from 'react';
+import { CheckCircleOutline } from '@mui/icons-material/';
 
 class DatePicker extends React.Component {
-  // TODO can only pick for the future
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
-      selectedDay: null,
+      selectedDay: new Date(),
     };
   }
 
-  handleDayClick(day, { selected }) {
+  handleDayClick(day) {
+    const date = new Date();
+
     this.setState({
-      selectedDay: selected ? undefined : day,
+      selectedDay: day,
     });
-    localStorage.setItem('date', JSON.stringify(day));
+
+    if (date.getTime() < day.getTime()) {
+      this.props.newPick(day);
+      localStorage.setItem('date', JSON.stringify(day));
+    }
   }
 
   render() {
     return (
       <div>
         <DayPicker
+          disabledDays={{
+            before: new Date(Date.now() + 3600 * 1000 * 24),
+          }}
           style={{ color: 'orange' }}
           selectedDays={this.state.selectedDay}
           onDayClick={this.handleDayClick}
         />
-        <Selection>
-          {this.state.selectedDay
-            ? this.state.selectedDay.toLocaleDateString()
-            : 'Please select a day'}
-        </Selection>
       </div>
     );
   }
 }
 
-const Dates = () => {
+const Dates = ({ done, unDone }) => {
+  const [message, setMessage] = useState();
+  const [day, setDay] = useState();
+  const checkDate = () => {
+    // check against API if it conflicts with the schedule
+    console.log(day);
+    setMessage('Available!');
+    done();
+  };
+
   return (
     <Wrapper>
-      <DatePicker />
-      {/* TODO: Can't really check against a database that isnt there... */}
-      <Btn onClick={() => {}}>Check if available</Btn>
+      <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div>
+          <DatePicker
+            newPick={(d) => {
+              unDone();
+              setMessage(null);
+              setDay(d);
+            }}
+          />
+        </div>
+        <div>
+          {message && (
+            <Message>
+              <CheckCircleOutline
+                style={{
+                  fontSize: '200px',
+                }}
+              />
+            </Message>
+          )}
+        </div>
+      </span>
+      {!message && <Btn onClick={checkDate}>Check if available</Btn>}
     </Wrapper>
   );
 };

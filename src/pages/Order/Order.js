@@ -110,11 +110,7 @@ const Order = () => {
               <Beverage categories={categories} dish={dish} />
             </Route>
             <Route path="/order/dish">
-              <Dish
-                getRandomDish={getRandomDish}
-                categories={categories}
-                dish={dish}
-              />
+              <Dish categories={categories} />
             </Route>
             <Route path={`${match.path}/`}>
               <Form />

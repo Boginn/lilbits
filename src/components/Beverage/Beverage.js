@@ -2,7 +2,7 @@ import { Wrapper, Card, Image } from './styles';
 
 import { useHistory } from 'react-router-dom';
 const Beverage = (properties) => {
-  console.log(properties);
+  // console.log(properties);
   const history = useHistory();
   // Using props and deconstructing still does not work
   // it was not just eslint being rude
@@ -11,8 +11,8 @@ const Beverage = (properties) => {
   };
   const handleSubmit = () => {
     localStorage.setItem('beverage', JSON.stringify(properties.dish.meals[0]));
-    const res = JSON.parse(localStorage.getItem('beverage'));
-    console.log(res);
+    // const res = JSON.parse(localStorage.getItem('beverage'));
+    // console.log(res);
     history.push('/order/receipt');
     // TODO Save this to the state?
     // properties.toggle();

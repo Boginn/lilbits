@@ -9,12 +9,13 @@ export const Wrapper = styled.div`
 `;
 
 export const FormWrapper = styled.form`
-  padding: 15px;
+  padding: 25px;
 `;
 
 export const Container = styled.div`
-  border: 1px solid white;
+  border: 1px solid ${colours.tertiary};
   width: 100%;
+  height: 450px;
 
   background-color: ${colours.primary};
 `;
@@ -34,13 +35,16 @@ export const Label = styled.label`
 
 export const Btn = styled(Button)`
   && {
+    font-size: 20pt;
+    text-shadow: 2px 2px 0px black;
     margin-top: 4px;
     margin-bottom: 4px;
     width: 100%;
-    border: 1px solid white;
+    height: 75px;
+    border: 1px solid ${colours.tertiary};
     border-radius: 10px;
     color: ${colours.tertiary};
-    background-color: ${colours.background};
+    text-shadow: 1px 1px 0 black;
     &:hover {
       background-color: ${colours.secondary};
     }

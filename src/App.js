@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { useEffect } from 'react';
 
-import { Logo, Footer, Navigation } from './components';
+import { Logo, Navigation } from './components';
 import { Content, Order } from './pages';
 import colours from './data/colours';
 
@@ -13,6 +13,7 @@ function App() {
     localStorage.clear();
   });
 
+  //TODO Style Dates better
   return (
     <>
       <Router>
@@ -26,7 +27,6 @@ function App() {
             <Content />
           </Route>
         </Switch>
-        <Footer />
       </Router>
     </>
   );

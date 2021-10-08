@@ -1,34 +1,30 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import { Wrapper, Card, Image, Container, Btn } from './styles';
+import Ingredients from './Ingredients';
+import Categories from './Categories';
+
+import {
+  Wrapper,
+  Card,
+  UnderCard,
+  Image,
+  Btn,
+  Title,
+  SubTitle,
+  DividerLine,
+} from './styles';
 import { useHistory } from 'react-router-dom';
 // import { FilterDish } from '../../components';
 import Grid from '@mui/material/Grid';
 
-const Dish = (properties) => {
-  // console.log(properties);
+const Dish = (props) => {
   const [dish, setDish] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [disabled, setDisabled] = useState(null);
 
   const history = useHistory();
-  // Using props and deconstructing still does not work
-  // it was not just eslint being rude
-  const handleGenerate = () => {
-    getRandomDish();
-    console.log(dish);
-    // let okay = false;
-    // categories.forEach((cat) => {
-    //   if (cat.strCategory == dish.meals[0].strCategory) {
-    //     okay = true;
-    //     console.log(dish);
-    //   }
-    // });
-    // if (!okay) {
-    //   console.log('getting random dish');
-    //   getRandomDish();
-    // }
-  };
+
   const handleSubmit = () => {
     localStorage.setItem('dish', JSON.stringify(dish.meals[0]));
     const res = JSON.parse(localStorage.getItem('dish'));
@@ -48,7 +44,7 @@ const Dish = (properties) => {
       if (categories) {
         let okay = false;
         let isNoneChecked = true;
-
+        setDisabled(true);
         categories.forEach((cat) => {
           if (cat.checked) {
             isNoneChecked = false;
@@ -61,14 +57,15 @@ const Dish = (properties) => {
             console.log(dish);
           }
         });
-        console.log(okay);
-        console.log(isNoneChecked);
         if (!okay && !isNoneChecked) {
-          handleGenerate();
+          getRandomDish();
+        } else {
+          setDisabled(false);
         }
       }
 
       setDish(result.data);
+      console.log(result.data);
     } catch (e) {
       console.log(e);
     }
@@ -85,7 +82,7 @@ const Dish = (properties) => {
 
   const makeCats = () => {
     const cats = [];
-    properties.categories.forEach((cat) => {
+    props.categories.forEach((cat) => {
       cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
     });
     return cats;
@@ -94,7 +91,7 @@ const Dish = (properties) => {
   const handleChange = (e, category) => {
     categories.forEach((cat) => {
       if (cat.name == category.name) {
-        cat.checked = e.target.checked;
+        cat.checked = !cat.checked;
       }
     });
   };
@@ -106,57 +103,43 @@ const Dish = (properties) => {
 
   return (
     <Wrapper>
-      <Grid container spacing={5}>
-        <Grid item xs={7}>
+      <Grid container spacing={8} style={{ justifyContent: 'center' }}>
+        <Grid item xs={6}>
           {dish && (
             <Card>
               <span>
                 <Image src={dish.meals[0].strMealThumb} alt="food" />
               </span>
-              <span>
-                <h1>{dish.meals[0] && dish.meals[0].strMeal}</h1>
-                <p>{dish.meals[0].strInstructions}</p>
-                <a href={dish.meals[0].strSource}>link</a>
-              </span>
+              <UnderCard>
+                <Title>{dish.meals[0] && dish.meals[0].strMeal}</Title>
+                <DividerLine />
+                <Ingredients dish={dish} />
+                <SubTitle>
+                  <span>
+                    Category:
+                    <i> {dish.meals[0] && dish.meals[0].strCategory} </i>
+                  </span>
+                  <span>
+                    Origin: <i> {dish.meals[0] && dish.meals[0].strArea}</i>
+                  </span>
+                </SubTitle>
+              </UnderCard>
             </Card>
           )}
         </Grid>
-        <Grid item xs={5}>
-          <Container>
-            <Grid
-              container
-              spacing={{ xs: 3, md: 2 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-              style={{ justifyContent: 'space-evenly' }}
-            >
-              {categories &&
-                categories.map((category) => (
-                  <Grid
-                    item
-                    key={category.idCategory}
-                    style={{
-                      background: 'red',
-                    }}
-                  >
-                    {/* <img src={category.strCategoryThumb} /> */}
-                    <label>{category.name}</label>
-                    <input
-                      type="checkbox"
-                      onChange={(e) => handleChange(e, category)}
-                    />
-                  </Grid>
-                ))}
-            </Grid>
-            <Btn type="button" onClick={handleGenerate}>
-              Generate Dish
-            </Btn>
-            <Btn type="button" onClick={handleSubmit}>
-              Submit
-            </Btn>
-          </Container>
+        <Grid item xs={4}>
+          <Categories
+            categories={categories}
+            handleChange={handleChange}
+            getRandomDish={getRandomDish}
+            disabled={disabled}
+          />
         </Grid>
-        <Grid item xs={8}></Grid>
-        <Grid item xs={4}></Grid>
+      </Grid>
+      <Grid item xs={8}>
+        <Btn type="button" onClick={handleSubmit} style={{ fontSize: '20pt' }}>
+          Submit
+        </Btn>
       </Grid>
 
       <></>

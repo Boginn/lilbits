@@ -23,7 +23,7 @@ class DatePicker extends React.Component {
 
     if (date.getTime() < day.getTime()) {
       this.props.newPick(day);
-      localStorage.setItem('date', JSON.stringify(day));
+      // localStorage.setItem('date', JSON.stringify(day));
     }
   }
 
@@ -50,7 +50,7 @@ const Dates = ({ done, unDone }) => {
     // check against API if it conflicts with the schedule
     console.log(day);
     setMessage('Available!');
-    done();
+    done(day);
   };
 
   return (

@@ -13,15 +13,18 @@ import {
   FormWrapper,
 } from './styles';
 
-import Dates from '../Dates';
+import Dates from './Dates';
 
-const Form = () => {
+const Form = ({ setFormData }) => {
   const history = useHistory();
+  const [date, setDate] = useState();
 
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (d) => {
-    localStorage.setItem('form', JSON.stringify(d));
+    const result = { ...d, date };
+    setFormData(result);
+    // localStorage.setItem('form', JSON.stringify(d));
     // NEXT step
     history.push('/order/dish');
     // const res = JSON.parse(localStorage.getItem('form'));
@@ -29,7 +32,8 @@ const Form = () => {
   };
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
-  const dateDone = () => {
+  const dateDone = (day) => {
+    setDate(day);
     setSubmitDisabled(false);
   };
   const dateUnDone = () => {

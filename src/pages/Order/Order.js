@@ -7,16 +7,24 @@ import {
   Route,
   useRouteMatch,
 } from 'react-router-dom';
-
+// import { useHistory } from 'react-router-dom';
 import { Wrapper, Container } from './styles';
 
 const Order = () => {
+  const [formData, setFormData] = useState({});
   const [dish, setDish] = useState({});
+  console.log(dish);
   const [categories, setCategories] = useState({});
   // const [state, setState] = useState({
   //   form: true,
   //   dish: false,
   // });
+  // const history = useHistory();
+
+  const commitBooking = (d) => {
+    console.log(formData);
+    console.log(d);
+  };
 
   const getRandomDish = async () => {
     try {
@@ -84,6 +92,7 @@ const Order = () => {
 
     // TODO
     // history.push('/order/form');
+
     // cant on unmounted but cant use componentDidMount?
   }, []);
 
@@ -97,6 +106,7 @@ const Order = () => {
 
   const match = useRouteMatch(); // !
   console.log(match);
+  console.log(commitBooking);
 
   return (
     <Router>
@@ -107,13 +117,17 @@ const Order = () => {
               <Receipt />
             </Route>
             <Route path="/order/beverage">
-              <Beverage categories={categories} dish={dish} />
+              <Beverage />
             </Route>
             <Route path="/order/dish">
               <Dish categories={categories} />
             </Route>
-            <Route path={`${match.path}/`}>
-              <Form />
+            <Route path={`${match.path}`}>
+              <Form
+                setFormData={(p) => {
+                  setFormData(p);
+                }}
+              />
             </Route>
           </Switch>
         </Container>

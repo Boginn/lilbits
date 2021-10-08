@@ -2,8 +2,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 import styled from 'styled-components';
-import colours from '../../data/colours';
-import { fadeIn } from '../../utilities/keyframes';
+import colours from '../../../data/colours';
+import { fadeIn } from '../../../utilities/keyframes';
 
 export const Wrapper = styled.div`
   padding: 15px;

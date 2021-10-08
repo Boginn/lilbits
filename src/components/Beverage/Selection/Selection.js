@@ -1,22 +1,27 @@
-import { MetaWrapper, Wrapper, Container, Btn } from './styles';
+import { MetaWrapper, Wrapper, Container, Btn, List, ListItem } from './styles';
 import Slider from '@mui/material/Slider';
-import { useState } from 'react';
 import colours from '../../../data/colours';
 function valuetext(value) {
   return `${value}`;
 }
 
-const Selection = ({ beverages, getRandomBeverage, setRange, disabled }) => {
-  // const [state, setState] = useState({
-  //   values: [4, 15],
-  //   value: null,
-  // });
-  console.log(beverages);
-  const [value, setValue] = useState([4, 8]);
+const Selection = ({
+  beverages,
+  setBeverage,
+  getRandomBeverage,
+  range,
+  setRange,
+  disabled,
+}) => {
+  const filterBeverages = (array) => {
+    return array.filter(
+      (bev) =>
+        Math.floor(bev.abv) >= range[0] && Math.floor(bev.abv) <= range[1]
+    );
+  };
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
-    setRange(value);
+    setRange(newValue);
   };
 
   const handleClick = () => {
@@ -32,31 +37,49 @@ const Selection = ({ beverages, getRandomBeverage, setRange, disabled }) => {
           columns={{ xs: 4, sm: 8, md: 8 }}
         >
           Alcohol Percentage
-          <Slider
-            style={{ color: `${colours.tertiary}` }}
-            min={2.5}
-            max={14}
-            getAriaValueText={valuetext}
-            value={value}
-            onChange={handleChange}
-            valueLabelDisplay="auto"
-          />
+          {range && (
+            <Slider
+              style={{ color: `${colours.tertiary}` }}
+              min={4}
+              max={12}
+              getAriaValueText={valuetext}
+              value={range}
+              onChange={handleChange}
+              valueLabelDisplay="auto"
+            />
+          )}
         </Container>
         <Btn disabled={disabled} type="button" onClick={handleClick}>
-          Find a beverage
+          Random Beverage
         </Btn>
       </Wrapper>
       <Wrapper>
-        <Container
+        <List
           container
           spacing={{ xs: 3, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 8 }}
         >
-          {beverages &&
-            beverages.map((beverage) => (
-              <p key={beverage}>{beverage.name}ff</p>
+          {filterBeverages(beverages) &&
+            filterBeverages(beverages).map((beverage) => (
+              <ListItem
+                onClick={() => {
+                  setBeverage([beverage]);
+                }}
+                key={beverage.id}
+              >
+                <span
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {beverage.name}
+                </span>
+                <span>{beverage.abv}%</span>
+              </ListItem>
             ))}
-        </Container>
+        </List>
       </Wrapper>
     </MetaWrapper>
   );

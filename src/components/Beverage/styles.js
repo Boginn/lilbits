@@ -77,10 +77,15 @@ export const UnderCard = styled.span`
   background-color: ${colours.primary};
 `;
 
+export const ImageWrapper = styled.span`
+  width: 320px;
+  justify-content: center;
+  text-align: center;
+`;
+
 export const Image = styled.img`
   margin-right: 25px;
   height: 350px;
-  background: white;
   border: 2px solid ${colours.primary};
   box-shadow: 3px 3px 3px black;
   border-top-left-radius: 10px;
@@ -121,8 +126,18 @@ export const Description = styled.p`
     color: ${colours.primary};
     text-shadow: 1px 1px 0px black;
     font-size: 13pt;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 150px;
 
     background-color: ${colours.tertiaryHalf};
+  }
+`;
+
+export const BtnWrapper = styled.div`
+  && {
+    width: 820px;
+    padding: 25px;
   }
 `;
 
@@ -130,12 +145,14 @@ export const Btn = styled(Button)`
   && {
     width: 100%;
     padding: 10px;
+    margin: auto;
     margin-top: 50px;
     margin-bottom: 4px;
     border: 1px solid ${colours.tertiary};
     border-radius: 10px;
     color: ${colours.tertiary};
     background-color: ${colours.background};
+    font-size: 20pt;
     &:hover {
       background-color: ${colours.secondary};
     }

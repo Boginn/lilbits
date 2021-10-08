@@ -37,12 +37,11 @@ export const Selection = styled.p`
   text-decoration: underline;
 `;
 
-export const Message = styled.span`
-  display: block;
+export const Message = styled.div`
   /* padding: 5px; */
   /* margin-right: 18px; */
   color: ${colours.tertiary};
   text-shadow: 1px 1px 0px black;
-
+  text-align: center;
   animation: ${fadeIn} 1s linear;
 `;

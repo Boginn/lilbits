@@ -1,8 +1,48 @@
-import { Wrapper, Container, Item, Input, Btn } from './styles';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Wrapper, Container, Item, Input, Btn, SubTitle } from './styles';
 
-const Categories = ({ categories, handleChange, getRandomDish, disabled }) => {
+const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
+  const handleChange = (e, category) => {
+    categories.forEach((cat) => {
+      if (cat.name == category.name) {
+        cat.checked = !cat.checked;
+      }
+    });
+  };
+
+  const makeCats = (array) => {
+    const cats = [];
+    array.forEach((cat) => {
+      cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
+    });
+    return cats;
+  };
+
+  const getMealCategories = async () => {
+    try {
+      let result = await axios.get(
+        'https://www.themealdb.com/api/json/v1/1/categories.php'
+      );
+
+      // filtering out goat and breakfast
+      result = result.data.categories.filter(
+        (word) => word.idCategory != '13' && word.idCategory != '14'
+      );
+      result = makeCats(result);
+      setCategories(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getMealCategories();
+  }, []);
+
   return (
     <Wrapper>
+      <SubTitle>Categories</SubTitle>
       <Container
         container
         spacing={{ xs: 3, md: 3 }}
@@ -22,7 +62,7 @@ const Categories = ({ categories, handleChange, getRandomDish, disabled }) => {
           ))}
       </Container>
       <Btn disabled={disabled} type="button" onClick={getRandomDish}>
-        Find a Dish
+        random dish
       </Btn>
     </Wrapper>
   );

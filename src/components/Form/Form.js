@@ -14,8 +14,9 @@ import {
 } from './styles';
 
 import Dates from './Dates';
+import { form } from '../../data/data';
 
-const Form = ({ setFormData }) => {
+const Form = ({ setOrder }) => {
   const history = useHistory();
   const [date, setDate] = useState();
 
@@ -23,7 +24,7 @@ const Form = ({ setFormData }) => {
 
   const onSubmit = (d) => {
     const result = { ...d, date };
-    setFormData(result);
+    setOrder(result);
     // localStorage.setItem('form', JSON.stringify(d));
     // NEXT step
     history.push('/order/dish');
@@ -46,55 +47,27 @@ const Form = ({ setFormData }) => {
         <Grid item xs={4}>
           <Container>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+              {form &&
+                form.inputs.map((item) => (
+                  <Label key={item.key}>
+                    {item.label}
+                    <InputField
+                      color={item.color}
+                      {...register(item.key)}
+                      type={item.type}
+                    />
+                  </Label>
+                ))}
+
               <Label>
-                Name
-                <InputField
-                  color={'warning'}
-                  {...register('name')}
-                  type="text"
-                />
-              </Label>
-              <Label>
-                Phone Number
-                <InputField
-                  color={'warning'}
-                  {...register('number')}
-                  type="number"
-                />
-              </Label>
-              <Label>
-                E-Mail Address
-                <InputField
-                  color={'warning'}
-                  {...register('mail')}
-                  type="text"
-                />
-              </Label>
-              <Label>
-                Occasion
-                <InputField
-                  color={'warning'}
-                  {...register('event')}
-                  type="text"
-                />
-              </Label>
-              <Label>
-                Estimated amount of guests
-                <InputField
-                  color={'warning'}
-                  {...register('guests')}
-                  type="text"
-                />
-              </Label>
-              <Label>
-                Anything else you would like to specify
+                {form.textarea.label}
                 <TextArea
-                  color={'warning'}
-                  {...register('other')}
+                  color={form.textarea.color}
+                  {...register(form.textarea.key)}
                   multiline
                   rows={2}
                   rowsmax={4}
-                  type="text"
+                  type={form.textarea.type}
                 />
               </Label>
             </FormWrapper>
@@ -111,7 +84,7 @@ const Form = ({ setFormData }) => {
             disabled={submitDisabled}
             onClick={handleSubmit(onSubmit)}
           >
-            Submit
+            next
           </Btn>
         </Grid>
       </Grid>

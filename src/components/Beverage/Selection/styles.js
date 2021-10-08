@@ -59,3 +59,31 @@ export const Btn = styled(Button)`
     }
   }
 `;
+
+export const List = styled.div`
+  && {
+    padding: 5px;
+
+    border: 1px solid ${colours.tertiary};
+    color: ${colours.tertiary};
+    background-color: ${colours.background};
+  }
+`;
+
+export const ListItem = styled.div`
+  && {
+    display: flex;
+
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    /* border: 1px solid ${colours.tertiary}; */
+    color: ${colours.tertiary};
+    background-color: ${colours.background};
+    &:hover {
+      background-color: ${colours.secondary};
+    }
+  }
+`;

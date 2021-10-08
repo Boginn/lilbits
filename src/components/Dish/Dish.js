@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 import Ingredients from './Ingredients';
 import Categories from './Categories';
+import Menu from './Menu';
 
 import {
   Wrapper,
@@ -10,17 +11,19 @@ import {
   UnderCard,
   Image,
   Btn,
+  BtnWrapper,
   Title,
   SubTitle,
   DividerLine,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-// import { FilterDish } from '../../components';
+
 import Grid from '@mui/material/Grid';
 
-const Dish = (props) => {
+const Dish = ({ order, setOrder }) => {
   const [dish, setDish] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const [dishes, setDishes] = useState(null);
+  const [categories, setCategories] = useState([]);
   const [disabled, setDisabled] = useState(null);
 
   const history = useHistory();
@@ -29,6 +32,8 @@ const Dish = (props) => {
     localStorage.setItem('dish', JSON.stringify(dish.meals[0]));
     const res = JSON.parse(localStorage.getItem('dish'));
     console.log(res);
+    setOrder({ ...order, dish: dish.meals[0] });
+
     history.push('/order/beverage');
     // TODO Save this to the state?
     // properties.toggle();
@@ -55,6 +60,7 @@ const Dish = (props) => {
           if (cat.checked && cat.name == result.data.meals[0].strCategory) {
             okay = true;
             console.log(dish);
+            console.log(cat);
           }
         });
         if (!okay && !isNoneChecked) {
@@ -71,6 +77,25 @@ const Dish = (props) => {
     }
   };
 
+  const getDishes = async () => {
+    setDisabled(true);
+    const dishes = [];
+    try {
+      for (let i = 0; i < 10; i++) {
+        let result = await axios.get(
+          'https://themealdb.com/api/json/v1/1/random.php'
+        );
+        dishes.push(result.data);
+      }
+
+      console.log(dishes);
+      setDishes(dishes);
+      setDisabled(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   // const filterDish = () => {
   //   categories.forEach((cat) => {
   //     if (cat.checked && cat.strCategory == result.data.meals[0].strCategory) {
@@ -80,25 +105,17 @@ const Dish = (props) => {
   //   });
   // };
 
-  const makeCats = () => {
-    const cats = [];
-    props.categories.forEach((cat) => {
-      cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
-    });
-    return cats;
-  };
-
-  const handleChange = (e, category) => {
-    categories.forEach((cat) => {
-      if (cat.name == category.name) {
-        cat.checked = !cat.checked;
-      }
-    });
-  };
+  // const makeCats = () => {
+  //   const cats = [];
+  //   props.categories.forEach((cat) => {
+  //     cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
+  //   });
+  //   return cats;
+  // };
 
   useEffect(() => {
-    setCategories(makeCats());
     getRandomDish();
+    getDishes();
   }, []);
 
   return (
@@ -126,23 +143,30 @@ const Dish = (props) => {
               </UnderCard>
             </Card>
           )}
+          <BtnWrapper>
+            <Btn type="button" onClick={handleSubmit}>
+              next
+            </Btn>
+          </BtnWrapper>
         </Grid>
+
         <Grid item xs={4}>
           <Categories
             categories={categories}
-            handleChange={handleChange}
+            setCategories={setCategories}
             getRandomDish={getRandomDish}
             disabled={disabled}
           />
+          {dishes && (
+            <Menu
+              dishes={dishes}
+              setDish={setDish}
+              getDishes={getDishes}
+              disabled={disabled}
+            />
+          )}
         </Grid>
       </Grid>
-      <Grid item xs={8}>
-        <Btn type="button" onClick={handleSubmit} style={{ fontSize: '20pt' }}>
-          Submit
-        </Btn>
-      </Grid>
-
-      <></>
     </Wrapper>
   );
 };

@@ -66,16 +66,25 @@ export const DividerLine = styled.hr`
   margin-top: 25px;
 `;
 
+export const BtnWrapper = styled.div`
+  && {
+    width: 820px;
+    padding: 25px;
+  }
+`;
+
 export const Btn = styled(Button)`
   && {
     width: 100%;
     padding: 10px;
+    margin: auto;
     margin-top: 50px;
     margin-bottom: 4px;
     border: 1px solid ${colours.tertiary};
     border-radius: 10px;
     color: ${colours.tertiary};
     background-color: ${colours.background};
+    font-size: 20pt;
     &:hover {
       background-color: ${colours.secondary};
     }

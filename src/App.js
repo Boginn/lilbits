@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { useEffect } from 'react';
 
-import { Logo, Navigation } from './components';
+import { Logo } from './components';
 import { Content, Order } from './pages';
 import colours from './data/colours';
 
@@ -18,7 +18,7 @@ function App() {
     <>
       <Router>
         <Logo></Logo>
-        <Navigation />
+        {/* <Navigation /> */}
         <Switch>
           <Route path="/order">
             <Order />

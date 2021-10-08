@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 export const Wrapper = styled.div`
   margin-left: 50px;
   margin-right: 50px;
+  margin-bottom: 20px;
   border: 1px solid ${colours.tertiary};
   border-radius: 5px;
 
@@ -23,7 +24,7 @@ export const Container = styled(Grid)`
     width: 100%;
     justify-content: center;
     padding: 15px;
-    margin-top: 4px;
+    margin-top: 0px;
     margin-bottom: 4px;
     margin-left: 0px;
     border: 1px solid ${colours.tertiary};
@@ -49,11 +50,19 @@ export const Item = styled(Grid)`
   }
 `;
 
+export const SubTitle = styled.h3`
+  padding: 0;
+  margin: 0;
+  color: ${colours.tertiary};
+  text-shadow: 2px 2px 0px black;
+  text-align: start;
+`;
+
 export const Btn = styled(Button)`
   && {
     width: 100%;
     padding: 10px;
-    margin-top: 50px;
+    margin-top: 5px;
     margin-bottom: 4px;
     border: 1px solid ${colours.tertiary};
     border-radius: 10px;

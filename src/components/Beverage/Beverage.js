@@ -3,7 +3,9 @@ import {
   Wrapper,
   Card,
   Image,
+  ImageWrapper,
   Btn,
+  BtnWrapper,
   UnderCard,
   Title,
   DividerLine,
@@ -17,7 +19,7 @@ import Grid from '@mui/material/Grid';
 
 import Selection from './Selection';
 
-const Beverage = () => {
+const Beverage = ({ order, setOrder }) => {
   const [beverage, setBeverage] = useState(null);
   const [beverages, setBeverages] = useState(null);
   const [range, setRange] = useState([4, 8]);
@@ -25,9 +27,10 @@ const Beverage = () => {
   const history = useHistory();
 
   const handleSubmit = () => {
-    localStorage.setItem('beverage', JSON.stringify(beverage.meals[0]));
+    localStorage.setItem('beverage', JSON.stringify(beverage[0].name));
     // const res = JSON.parse(localStorage.getItem('beverage'));
     // console.log(res);
+    setOrder({ ...order, beverage: beverage[0] });
     history.push('/order/receipt');
     // TODO Save this to the state?
     // properties.toggle();
@@ -35,13 +38,15 @@ const Beverage = () => {
 
   const getRandomBeverage = async () => {
     setDisabled(true);
-
     try {
       let result = await axios.get('https://api.punkapi.com/v2/beers/random');
 
       // console.log(properties.Selection);
       if (range) {
-        if (result.data[0].abv < range[0] || result.data[0].abv > range[1]) {
+        if (
+          Math.floor(result.data[0].abv) < range[0] ||
+          Math.floor(result.data[0].abv) > range[1]
+        ) {
           getRandomBeverage();
         } else {
           setDisabled(false);
@@ -58,9 +63,6 @@ const Beverage = () => {
   const getBeverages = async () => {
     try {
       let result = await axios.get('https://api.punkapi.com/v2/beers');
-
-      console.log(result.data);
-      console.log(beverages);
       setBeverages(result.data);
     } catch (e) {
       console.log(e);
@@ -78,9 +80,9 @@ const Beverage = () => {
         <Grid item xs={6}>
           {beverage && (
             <Card>
-              <span>
-                <Image src={beverage[0].image_url} alt="food" />
-              </span>
+              <ImageWrapper>
+                <Image src={beverage[0].image_url} alt="beverage" />
+              </ImageWrapper>
               <UnderCard>
                 <Title>{beverage[0] && beverage[0].name}</Title>
                 <DividerLine />
@@ -97,19 +99,19 @@ const Beverage = () => {
               </UnderCard>
             </Card>
           )}
-          <Btn
-            type="button"
-            onClick={handleSubmit}
-            style={{ fontSize: '20pt' }}
-          >
-            Submit
-          </Btn>
+          <BtnWrapper>
+            <Btn type="button" onClick={handleSubmit}>
+              next
+            </Btn>
+          </BtnWrapper>
         </Grid>
         <Grid item xs={4}>
           {beverages && (
             <Selection
               beverages={beverages}
               getRandomBeverage={getRandomBeverage}
+              setBeverage={setBeverage}
+              range={range}
               setRange={setRange}
               disabled={disabled}
             />

@@ -23,7 +23,6 @@ class DatePicker extends React.Component {
 
     if (date.getTime() < day.getTime()) {
       this.props.newPick(day);
-      // localStorage.setItem('date', JSON.stringify(day));
     }
   }
 
@@ -44,13 +43,20 @@ class DatePicker extends React.Component {
 }
 
 const Dates = ({ done, unDone }) => {
-  const [message, setMessage] = useState();
+  const [available, setAvailable] = useState(false);
+  const [message, setMessage] = useState(null);
   const [day, setDay] = useState();
   const checkDate = () => {
     // check against API if it conflicts with the schedule
     console.log(day);
-    setMessage('Available!');
-    done(day);
+    if (day) {
+      setAvailable(true);
+
+      done(day);
+      setMessage(null);
+    } else {
+      setMessage('Pick a date');
+    }
   };
 
   return (
@@ -61,23 +67,26 @@ const Dates = ({ done, unDone }) => {
             newPick={(d) => {
               unDone();
               setMessage(null);
+              setAvailable(false);
               setDay(d);
             }}
           />
         </div>
         <div>
-          {message && (
+          {available && (
             <Message>
               <CheckCircleOutline
                 style={{
-                  fontSize: '200px',
+                  fontSize: '210px',
                 }}
               />
+              {day.toDateString()}
             </Message>
           )}
         </div>
       </span>
-      {!message && <Btn onClick={checkDate}>Check if available</Btn>}
+      {!available && <Btn onClick={checkDate}>Check if available</Btn>}
+      {message && <Message>{message}</Message>}
     </Wrapper>
   );
 };

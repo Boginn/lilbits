@@ -11,7 +11,9 @@ export const Text = styled.p`
     font-style: italic;
     font-size: 12pt;
     font-weight: bold;
-
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background-color: ${colours.tertiary};
   }
 `;

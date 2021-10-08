@@ -55,3 +55,24 @@ export const content = {
     ],
   },
 };
+
+export const form = {
+  inputs: [
+    { label: 'Name', color: 'warning', key: 'name', type: 'text' },
+    { label: 'Phone Number', color: 'warning', key: 'number', type: 'number' },
+    { label: 'E-mail Address', color: 'warning', key: 'mail', type: 'text' },
+    { label: 'Occasion', color: 'warning', key: 'event', type: 'text' },
+    {
+      label: 'Estimated amount of guests',
+      color: 'warning',
+      key: 'guests',
+      type: 'text',
+    },
+  ],
+  textarea: {
+    label: 'Anything else you would like to specify',
+    color: 'warning',
+    key: 'other',
+    type: 'text',
+  },
+};

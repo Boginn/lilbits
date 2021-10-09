@@ -1,16 +1,10 @@
+import { Previews, Introduction, Invitation } from '../../components';
 import { Wrapper, Container } from './styles';
-import {
-  // CheckOrder,
-  Previews,
-  // Delivery,
-  Introduction,
-  Invitation,
-} from '../../components';
 import Grid from '@mui/material/Grid';
 import { displayCenter } from '../../material/material';
 import '../../media.css';
 
-const Content = () => {
+const Home = () => {
   return (
     <Wrapper>
       <Container>
@@ -22,16 +16,10 @@ const Content = () => {
             <Introduction />
             <Invitation />
           </Grid>
-          {/* <Grid item md={8}>
-            <CheckOrder />
-          </Grid>
-          <Grid item md={4}>
-            <Delivery />
-          </Grid> */}
         </Grid>
       </Container>
     </Wrapper>
   );
 };
 
-export default Content;
+export default Home;

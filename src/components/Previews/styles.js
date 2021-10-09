@@ -1,5 +1,4 @@
 import Item from '@mui/material/Grid';
-
 import styled from 'styled-components';
 import colours from '../../data/colours';
 import { panning } from '../../utilities/keyframes';
@@ -11,7 +10,6 @@ export const Container = styled.div`
   width: 100%;
   margin-left: 55px;
   border: 1px solid ${colours.tertiary};
-  /* background-color: ${colours.secondary}; */
 `;
 
 export const Image = styled(Item)`

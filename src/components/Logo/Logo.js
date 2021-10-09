@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { ui } from '../../data/data';
+
 import { Wrapper, Image } from './styles';
 
 const Logo = () => {

@@ -1,75 +1,72 @@
+import { useState, useEffect } from 'react';
+import uuid from 'react-uuid';
+import { content } from '../../data/data';
+
 import {
   Wrapper,
   Card,
   DishImage,
   BeverageImage,
   Title,
-  Text,
+  TitleBorder,
   TitleText,
-  SubTitle,
   Btn,
   Description,
 } from './styles';
-
 import Grid from '@mui/material/Grid';
 import '../../media.css';
-import { displayCenter } from '../../material/material';
+import { displayBetween, displayCenter } from '../../material/material';
 
-const Receipt = ({ order, commitBooking }) => {
-  const handleClick = () => {
-    commitBooking();
+import OrderInfo from './OrderInfo';
+
+const Receipt = ({ order, commitBooking, pushHome }) => {
+  const [reference, setReference] = useState();
+  const title = content.receipt.title;
+  const subTitle = content.receipt.subTitle;
+
+  const handleSubmit = () => {
+    commitBooking(reference);
   };
+  const handleClick = () => {
+    pushHome();
+  };
+
+  useEffect(() => {
+    setReference(`#${uuid().split('-')[0]}`);
+  }, []);
 
   return (
     <Wrapper>
-      {order && (
-        <Card>
-          <div className="hide-xmedium">
-            <Grid item xs={12} style={displayCenter}>
-              <DishImage src={order.dish.strMealThumb} alt="food" />
-              <BeverageImage src={order.beverage.image_url} alt="food" />
-            </Grid>
-          </div>
+      {order ? (
+        <Grid container spacing={5} style={displayCenter}>
+          <Card>
+            <div className="hide-xmedium">
+              <Grid item xs={12}>
+                <DishImage src={order.dish.strMealThumb} alt="food" />
+                <BeverageImage src={order.beverage.image_url} alt="food" />
+              </Grid>
+            </div>
 
-          <div>
-            <Title>
-              <p>
-                {order.event} for {order.guests}
-              </p>
-            </Title>
-
-            <SubTitle>
-              {order.dish.strMeal}
-              <i> and </i> {order.beverage.name}
-            </SubTitle>
-            <Description>
-              <TitleText
-                style={{ justifyContent: 'space-between', display: 'flex' }}
-              >
-                <span>{order.name}</span>
-                <span>
-                  {order.date.toDateString().split(' ')[1]}.
-                  {order.date.toDateString().split(' ')[2]} &apos;
-                  {order.date.toDateString().split(' ')[3].split('20')[1]}
-                </span>
-              </TitleText>
-              <TitleText>
-                {order.number} - {order.email}
-              </TitleText>
-              <Text>{order.other}</Text>
-
-              {/* <p>{order.name}</p>
-              <p>{order.number}</p>
-              <p>{order.email}</p>
-              <p>{order.event} for {order.guests} guests</p>
-              <p>{order.other}</p> */}
-            </Description>
-          </div>
-        </Card>
+            <OrderInfo order={order} />
+          </Card>
+          <Btn type="button" onClick={handleSubmit}>
+            submit
+          </Btn>
+        </Grid>
+      ) : (
+        <Grid container spacing={5} style={displayCenter}>
+          <Description>
+            <span style={displayBetween}>
+              <Title>{title}</Title>
+              <TitleBorder>{reference}</TitleBorder>
+            </span>
+            <TitleText>{subTitle}</TitleText>
+          </Description>
+          <Btn type="button" onClick={handleClick}>
+            okay
+          </Btn>
+        </Grid>
       )}
-      <Btn type="button" onClick={handleClick}>
-        submit
-      </Btn>
     </Wrapper>
   );
 };

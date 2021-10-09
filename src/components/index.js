@@ -1,10 +1,8 @@
 export { default as Logo } from './Logo';
-export { default as CheckOrder } from './CheckOrder';
 export { default as Previews } from './Previews';
-export { default as Delivery } from './Delivery';
+export { default as Contact } from './Contact';
 export { default as Introduction } from './Introduction';
 export { default as Invitation } from './Invitation';
-export { default as Navigation } from './Navigation';
 export { default as Dish } from './Dish';
 export { default as Beverage } from './Beverage';
 export { default as Form } from './Form';

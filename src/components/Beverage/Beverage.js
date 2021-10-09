@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import { displayCenter } from '../../material/material';
+import { displayCenter, displayBetween } from '../../material/material';
 
 import '../../media.css';
 
@@ -90,7 +90,7 @@ const Beverage = ({ order, setOrder }) => {
                   <DividerLine />
 
                   <Description>{beverage.description}</Description>
-                  <SubTitle>
+                  <SubTitle style={displayBetween}>
                     <span>
                       <i>{beverage && beverage.tagline}</i>
                     </span>

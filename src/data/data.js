@@ -25,6 +25,14 @@ export const content = {
       `Please contact us if you can not find your order in our system.`,
     ],
   },
+
+  receipt: {
+    title: 'Order Reference:',
+    subTitle:
+      'Your order has been processed. You can check your order on our website or if you contact us',
+    paragraphs: [],
+  },
+
   previews: {
     items: [
       {
@@ -51,6 +59,24 @@ export const content = {
       {
         description: 'icelandic food',
         link: 'https://traveladestatic.imgix.net/media/original_images/gourmet-restaurants-and-street-food-try-iceland.jpg',
+      },
+    ],
+  },
+
+  contact: {
+    mail: 'lilbits@lilbits.com',
+    items: [
+      {
+        description: 'facebook/lilbits',
+        link: 'http://facebook.com/lilbits',
+      },
+      {
+        description: 'twitter/lilbits',
+        link: 'http://twitter.com/lilbits',
+      },
+      {
+        description: 'instagram/lilbits',
+        link: 'http://instagram.com/lilbits',
       },
     ],
   },

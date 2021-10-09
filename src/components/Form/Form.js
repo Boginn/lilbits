@@ -1,8 +1,9 @@
-import { useForm } from 'react-hook-form';
-import Grid from '@mui/material/Grid';
-import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import { displayCenter } from '../../material/material';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { form } from '../../data/data';
+
+import Dates from './Dates';
 
 import {
   Wrapper,
@@ -13,9 +14,8 @@ import {
   Btn,
   FormWrapper,
 } from './styles';
-
-import Dates from './Dates';
-import { form } from '../../data/data';
+import Grid from '@mui/material/Grid';
+import { displayCenter } from '../../material/material';
 
 const Form = ({ setOrder }) => {
   const history = useHistory();
@@ -26,11 +26,7 @@ const Form = ({ setOrder }) => {
   const onSubmit = (d) => {
     const result = { ...d, date };
     setOrder(result);
-    // localStorage.setItem('form', JSON.stringify(d));
-    // NEXT step
     history.push('/order/dish');
-    // const res = JSON.parse(localStorage.getItem('form'));
-    // console.log(res);
   };
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -68,6 +64,7 @@ const Form = ({ setOrder }) => {
                   multiline
                   rows={2}
                   rowsmax={4}
+                  maxLength={200}
                   type={form.textarea.type}
                 />
               </Label>
@@ -75,7 +72,7 @@ const Form = ({ setOrder }) => {
           </Container>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Container>
+          <Container style={displayCenter}>
             <Dates done={dateDone} unDone={dateUnDone} />
           </Container>
         </Grid>

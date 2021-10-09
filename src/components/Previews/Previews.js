@@ -1,6 +1,7 @@
+import { content } from '../../data/data';
+
 import { Wrapper, Container, Image } from './styles';
 import Carousel from 'react-material-ui-carousel';
-import { content } from '../../data/data';
 
 const Previews = () => {
   const items = content.previews.items;

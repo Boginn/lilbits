@@ -1,8 +1,8 @@
-import { Btn as _Btn } from '../../material/material';
-import { Card as _Card } from '../../material/material';
-import { Text as _Text } from '../../material/material';
+import { Btn as _Btn } from '../../../material/material';
+import { Card as _Card } from '../../../material/material';
+import { Text as _Text } from '../../../material/material';
 import styled from 'styled-components';
-import colours from '../../data/colours';
+import colours from '../../../data/colours';
 
 export const Wrapper = styled.div`
   padding: 25px;
@@ -10,19 +10,6 @@ export const Wrapper = styled.div`
 
 export const Card = styled(_Card)`
   text-align: start;
-`;
-
-export const DishImage = styled.img`
-  margin-right: 25px;
-  width: 320px;
-  border: 3px solid ${colours.primary};
-  box-shadow: 3px 3px 3px black;
-  border-top-left-radius: 10px;
-`;
-
-export const BeverageImage = styled.img`
-  margin-right: 25px;
-  height: 350px;
 `;
 
 export const TitleText = styled.p`
@@ -41,17 +28,6 @@ export const Title = styled.h1`
   text-align: center;
   text-shadow: 1px 1px 0px black;
   background: ${colours.primary};
-`;
-
-export const TitleBorder = styled.h1`
-  color: ${colours.tertiary};
-  text-align: center;
-  text-shadow: 1px 1px 0px black;
-  background: ${colours.background};
-
-  padding: 5px;
-  border-radius: 0px;
-  border: 1px solid ${colours.tertiary};
 `;
 
 export const SubTitle = styled.p`

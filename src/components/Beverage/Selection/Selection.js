@@ -1,7 +1,10 @@
-import { MetaWrapper, Wrapper, Container, Btn, List, ListItem } from './styles';
+import uuid from 'react-uuid';
+
+import { Wrapper, Container, Btn, List, ListItem, Text } from './styles';
 import Slider from '@mui/material/Slider';
 import colours from '../../../data/colours';
 import '../../../media.css';
+import { displayBetween } from '../../../material/material';
 
 function valuetext(value) {
   return `${value}`;
@@ -31,13 +34,9 @@ const Selection = ({
   };
 
   return (
-    <MetaWrapper>
-      <Wrapper>
-        <Container
-          container
-          spacing={{ xs: 3, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 8 }}
-        >
+    <Wrapper>
+      <Container>
+        <Text>
           Alcohol Percentage
           {range && (
             <Slider
@@ -50,12 +49,12 @@ const Selection = ({
               valueLabelDisplay="auto"
             />
           )}
-        </Container>
+        </Text>
         <Btn disabled={disabled} type="button" onClick={handleClick}>
           Random Beverage
         </Btn>
-      </Wrapper>
-      <Wrapper className="hide-xmedium">
+      </Container>
+      <Container className="hide-xmedium">
         <List
           container
           spacing={{ xs: 3, md: 3 }}
@@ -64,10 +63,11 @@ const Selection = ({
           {filterBeverages(beverages) &&
             filterBeverages(beverages).map((beverage) => (
               <ListItem
+                style={displayBetween}
                 onClick={() => {
                   setBeverage(beverage);
                 }}
-                key={beverage.id}
+                key={uuid()}
               >
                 <span
                   style={{
@@ -82,8 +82,8 @@ const Selection = ({
               </ListItem>
             ))}
         </List>
-      </Wrapper>
-    </MetaWrapper>
+      </Container>
+    </Wrapper>
   );
 };
 

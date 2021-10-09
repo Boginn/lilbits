@@ -1,4 +1,4 @@
-import { Text } from './styles';
+import { Description } from './styles';
 
 const Ingredients = ({ dish }) => {
   let ingredients = dish.strIngredient1;
@@ -9,13 +9,13 @@ const Ingredients = ({ dish }) => {
     }
   }
   return (
-    <Text>
+    <Description>
       {ingredients}
       {/* {ingredients &&
           ingredients.map((ingredient) => (
             <Ingredient key={ingredient.id}>{ingredient.name}</Ingredient>
           ))} */}
-    </Text>
+    </Description>
   );
 };
 

@@ -1,54 +1,34 @@
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
-import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import colours from '../../data/colours';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import { Container as _Container } from '../../material/material';
+import { Btn as _Btn } from '../../material/material';
+
+export const Wrapper = styled.div``;
 
 export const FormWrapper = styled.form`
   padding: 25px;
 `;
 
-export const Container = styled.div`
-  border: 1px solid ${colours.tertiary};
+export const Container = styled(_Container)`
   height: 450px;
-  display: flex;
-  justify-content: center;
-  background-color: ${colours.primary};
-`;
-
-export const Title = styled.h1`
-  color: ${colours.tertiary};
+  padding: 0;
 `;
 
 export const Label = styled.label`
   && {
     text-shadow: 1px 1px 0 black;
-
     color: ${colours.tertiary};
     /* text-shadow: 2px 2px 0px black; */
   }
 `;
 
-export const Btn = styled(Button)`
+export const Btn = styled(_Btn)`
   && {
+    margin-top: 50px;
     font-size: 20pt;
-    text-shadow: 2px 2px 0px black;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    width: 100%;
-    height: 75px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    text-shadow: 1px 1px 0 black;
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;
 

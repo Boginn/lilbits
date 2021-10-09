@@ -20,7 +20,7 @@ import {
 import { useHistory } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
-// import { displayCenter } from '../../material/material';
+import { displayBetween } from '../../material/material';
 import '../../media.css';
 
 const Dish = ({ order, setOrder }) => {
@@ -115,7 +115,7 @@ const Dish = ({ order, setOrder }) => {
                   <Title>{dish && dish.strMeal}</Title>
                   <DividerLine />
                   <Ingredients dish={dish} />
-                  <SubTitle>
+                  <SubTitle style={displayBetween}>
                     <span>
                       Category:
                       <i> {dish && dish.strCategory} </i>

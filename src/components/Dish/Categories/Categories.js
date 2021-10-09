@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { Wrapper, Container, Item, Input, Btn, SubTitle } from './styles';
+import uuid from 'react-uuid';
+
+import { displayCenter } from '../../../material/material';
+import { Wrapper, List, Item, Input, Btn } from './styles';
 
 const Categories = ({ categories, setCategories, disabled, getRandomDish }) => {
   const handleChange = (e, category) => {
@@ -49,18 +52,15 @@ const Categories = ({ categories, setCategories, disabled, getRandomDish }) => {
 
   return (
     <Wrapper>
-      <SubTitle>Categories</SubTitle>
-      <Container
+      <List
+        style={displayCenter}
         container
         spacing={{ xs: 3, md: 6 }}
         columns={{ xs: 4, sm: 8, md: 8 }}
       >
         {categories &&
           categories.map((category) => (
-            <label
-              key={category.idCategory}
-              onChange={(e) => handleChange(e, category)}
-            >
+            <label key={uuid()} onChange={(e) => handleChange(e, category)}>
               <Item item>
                 <Input type="checkbox" />
                 {category.name}
@@ -70,7 +70,7 @@ const Categories = ({ categories, setCategories, disabled, getRandomDish }) => {
         <Btn disabled={disabled} type="button" onClick={getRandomDish}>
           next dish
         </Btn>
-      </Container>
+      </List>
     </Wrapper>
   );
 };

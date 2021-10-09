@@ -1,78 +1,28 @@
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
-import colours from '../../../data/colours';
-import { Btn as Button } from '../../../material/material';
+import { Container as _Container } from '../../../material/material';
 
-export const MetaWrapper = styled.div`
+export const Wrapper = styled.div`
   margin-left: 50px;
   margin-right: 50px;
   border-radius: 5px;
   width: 100%;
   text-align: center;
-
   padding: 25px;
 `;
 
-export const Wrapper = styled.div`
+export const Container = styled(_Container)`
   margin-left: 50px;
   margin-right: 50px;
   margin-bottom: 20px;
-  border: 1px solid ${colours.tertiary};
-  border-radius: 5px;
-
+  width: auto;
   text-align: center;
-
-  box-shadow: 1px 1px 1px 0px ${colours.tertiary};
-
-  padding: 25px;
-
-  background-color: ${colours.primary};
 `;
 
-export const Container = styled(Grid)`
-  && {
-    width: 100%;
-    justify-content: center;
-    padding: 15px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    margin-left: 0px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-  }
-`;
+export { Btn } from '../../../material/material';
 
-export const Btn = styled(Button)`
-  && {
-  }
-`;
+export { Text } from '../../../material/material';
 
-export const List = styled.div`
-  && {
-    padding: 8px;
+export { List } from '../../../material/material';
 
-    border: 1px solid ${colours.tertiary};
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-  }
-`;
-
-export const ListItem = styled.div`
-  && {
-    display: flex;
-
-    justify-content: space-between;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    /* border: 1px solid ${colours.tertiary}; */
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-    &:hover {
-      background-color: ${colours.secondary};
-    }
-  }
-`;
+export { ListItem } from '../../../material/material';

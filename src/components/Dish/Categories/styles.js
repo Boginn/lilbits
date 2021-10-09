@@ -1,35 +1,20 @@
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import colours from '../../../data/colours';
-import { Btn as Button } from '../../../material/material';
+import { Container as _Container } from '../../../material/material';
+import { SubTitle as _SubTitle } from '../../../material/material';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(_Container)`
   margin-left: 50px;
   margin-right: 50px;
   margin-bottom: 20px;
-  border: 1px solid ${colours.tertiary};
-  border-radius: 5px;
-
-  text-align: center;
-
-  box-shadow: 1px 1px 1px 0px ${colours.tertiary};
-
-  padding: 25px;
-
-  background-color: ${colours.primary};
+  width: auto;
 `;
 
-export const Container = styled(Grid)`
+export const List = styled(Grid)`
   && {
     width: 100%;
-    justify-content: center;
-    margin-top: 0px;
-    margin-bottom: 4px;
-    margin-left: 0px;
-    /* border: 1px solid ${colours.tertiary}; */
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    /* background-color: ${colours.background}; */
+    margin: 0;
   }
 `;
 
@@ -49,18 +34,13 @@ export const Item = styled(Grid)`
   }
 `;
 
-export const SubTitle = styled.h3`
+export const SubTitle = styled(_SubTitle)`
   padding: 0;
   margin: 0;
-  color: ${colours.tertiary};
-  text-shadow: 2px 2px 0px black;
   text-align: start;
 `;
 
-export const Btn = styled(Button)`
-  && {
-  }
-`;
+export { Btn } from '../../../material/material';
 
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   &&& {
@@ -68,7 +48,6 @@ export const Input = styled.input.attrs({ type: 'checkbox' })`
     cursor: pointer;
     margin-right: 10px;
     margin-top: -1px;
-
     &:before {
       content: '';
       display: block;
@@ -84,7 +63,6 @@ export const Input = styled.input.attrs({ type: 'checkbox' })`
     }
     &:checked:after {
       content: '';
-
       width: 5px;
       height: 10px;
       border: solid ${colours.primary};

@@ -1,5 +1,6 @@
-import { Wrapper, Container, Title, Text, DividerLine } from './styles';
 import { content } from '../../data/data';
+
+import { Wrapper, Container, Title, Text, DividerLine } from './styles';
 
 const Introduction = () => {
   const paragraphs = content.introduction.paragraphs;

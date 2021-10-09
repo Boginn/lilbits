@@ -1,9 +1,9 @@
 import { Text } from './styles';
 
 const Ingredients = ({ dish }) => {
-  let ingredients = dish.meals[0].strIngredient1;
+  let ingredients = dish.strIngredient1;
   for (let i = 2; i < 21; i++) {
-    const ingr = eval(`dish.meals[0].strIngredient${i}`);
+    const ingr = eval(`dish.strIngredient${i}`);
     if (ingr) {
       ingredients = `${ingredients}, ${ingr}`;
     }

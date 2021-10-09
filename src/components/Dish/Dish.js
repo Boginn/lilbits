@@ -29,14 +29,8 @@ const Dish = ({ order, setOrder }) => {
   const history = useHistory();
 
   const handleSubmit = () => {
-    localStorage.setItem('dish', JSON.stringify(dish.meals[0]));
-    const res = JSON.parse(localStorage.getItem('dish'));
-    console.log(res);
-    setOrder({ ...order, dish: dish.meals[0] });
-
+    setOrder({ ...order, dish: dish });
     history.push('/order/beverage');
-    // TODO Save this to the state?
-    // properties.toggle();
   };
 
   const getRandomDish = async () => {
@@ -70,8 +64,8 @@ const Dish = ({ order, setOrder }) => {
         }
       }
 
-      setDish(result.data);
-      console.log(result.data);
+      console.log(result.data.meals[0]);
+      setDish(result.data.meals[0]);
     } catch (e) {
       console.log(e);
     }
@@ -125,19 +119,19 @@ const Dish = ({ order, setOrder }) => {
           {dish && (
             <Card>
               <span>
-                <Image src={dish.meals[0].strMealThumb} alt="food" />
+                <Image src={dish.strMealThumb} alt="food" />
               </span>
               <UnderCard>
-                <Title>{dish.meals[0] && dish.meals[0].strMeal}</Title>
+                <Title>{dish && dish.strMeal}</Title>
                 <DividerLine />
                 <Ingredients dish={dish} />
                 <SubTitle>
                   <span>
                     Category:
-                    <i> {dish.meals[0] && dish.meals[0].strCategory} </i>
+                    <i> {dish && dish.strCategory} </i>
                   </span>
                   <span>
-                    Origin: <i> {dish.meals[0] && dish.meals[0].strArea}</i>
+                    Origin: <i> {dish && dish.strArea}</i>
                   </span>
                 </SubTitle>
               </UnderCard>

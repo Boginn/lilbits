@@ -1,4 +1,5 @@
 import { Wrapper, ListItem, List, SubTitle, Btn } from './styles';
+import { hideOverflow } from '../../../material/material';
 
 const Menu = ({ dishes, setDish, getDishes, disabled }) => {
   const filterDishes = (array) => {
@@ -16,19 +17,11 @@ const Menu = ({ dishes, setDish, getDishes, disabled }) => {
           filterDishes(dishes).map((dish) => (
             <ListItem
               onClick={() => {
-                setDish(dish);
+                setDish(dish.meals[0]);
               }}
               key={dish.meals[0].idMeal}
             >
-              <span
-                style={{
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {dish.meals[0].strMeal}
-              </span>
+              <span style={hideOverflow}>{dish.meals[0].strMeal}</span>
               <span>{dish.meals[0].strCategory}</span>
             </ListItem>
           ))}

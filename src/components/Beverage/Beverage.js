@@ -27,13 +27,8 @@ const Beverage = ({ order, setOrder }) => {
   const history = useHistory();
 
   const handleSubmit = () => {
-    localStorage.setItem('beverage', JSON.stringify(beverage[0].name));
-    // const res = JSON.parse(localStorage.getItem('beverage'));
-    // console.log(res);
-    setOrder({ ...order, beverage: beverage[0] });
+    setOrder({ ...order, beverage: beverage });
     history.push('/order/receipt');
-    // TODO Save this to the state?
-    // properties.toggle();
   };
 
   const getRandomBeverage = async () => {
@@ -41,7 +36,6 @@ const Beverage = ({ order, setOrder }) => {
     try {
       let result = await axios.get('https://api.punkapi.com/v2/beers/random');
 
-      // console.log(properties.Selection);
       if (range) {
         if (
           Math.floor(result.data[0].abv) < range[0] ||
@@ -53,8 +47,8 @@ const Beverage = ({ order, setOrder }) => {
         }
       }
 
-      console.log(result.data);
-      setBeverage(result.data);
+      console.log(result.data[0]);
+      setBeverage(result.data[0]);
     } catch (e) {
       console.log(e);
     }
@@ -81,19 +75,19 @@ const Beverage = ({ order, setOrder }) => {
           {beverage && (
             <Card>
               <ImageWrapper>
-                <Image src={beverage[0].image_url} alt="beverage" />
+                <Image src={beverage.image_url} alt="beverage" />
               </ImageWrapper>
               <UnderCard>
-                <Title>{beverage[0] && beverage[0].name}</Title>
+                <Title>{beverage && beverage.name}</Title>
                 <DividerLine />
 
-                <Description>{beverage[0].description}</Description>
+                <Description>{beverage.description}</Description>
                 <SubTitle>
                   <span>
-                    <i>{beverage[0] && beverage[0].tagline}</i>
+                    <i>{beverage && beverage.tagline}</i>
                   </span>
                   <span>
-                    <i> {beverage[0] && beverage[0].abv}</i>%
+                    <i> {beverage && beverage.abv}</i>%
                   </span>
                 </SubTitle>
               </UnderCard>

@@ -1,13 +1,13 @@
-import { Wrapper, Image } from './styles';
-import { ui } from '../../data/data';
-
 import { useHistory } from 'react-router-dom';
+import { ui } from '../../data/data';
+import { Wrapper, Image } from './styles';
+
 const Logo = () => {
   const history = useHistory();
-
   const handleClick = (route) => {
     history.push(route);
   };
+
   return (
     <Wrapper>
       <Image

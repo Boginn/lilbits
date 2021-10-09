@@ -63,7 +63,7 @@ const Selection = ({
             filterBeverages(beverages).map((beverage) => (
               <ListItem
                 onClick={() => {
-                  setBeverage([beverage]);
+                  setBeverage(beverage);
                 }}
                 key={beverage.id}
               >

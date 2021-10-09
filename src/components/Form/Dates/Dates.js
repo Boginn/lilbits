@@ -17,11 +17,10 @@ class DatePicker extends React.Component {
   handleDayClick(day) {
     const date = new Date();
 
-    this.setState({
-      selectedDay: day,
-    });
-
     if (date.getTime() < day.getTime()) {
+      this.setState({
+        selectedDay: day,
+      });
       this.props.newPick(day);
     }
   }

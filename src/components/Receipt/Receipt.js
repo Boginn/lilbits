@@ -13,11 +13,10 @@ import {
   Description,
 } from './styles';
 
-import { useHistory } from 'react-router-dom';
 const Receipt = ({ order, commitBooking }) => {
-  const history = useHistory();
-
-  console.log(history);
+  const handleClick = () => {
+    commitBooking();
+  };
 
   return (
     <Wrapper>
@@ -32,7 +31,9 @@ const Receipt = ({ order, commitBooking }) => {
 
           <div>
             <Title>
-              <p>Birthday for 35</p>
+              <p>
+                {order.event} for {order.guests}
+              </p>
             </Title>
 
             <SubTitle>
@@ -43,21 +44,17 @@ const Receipt = ({ order, commitBooking }) => {
               <TitleText
                 style={{ justifyContent: 'space-between', display: 'flex' }}
               >
-                <span>Finnbogi Jokull Petursson</span>
+                <span>{order.name}</span>
                 <span>
                   {order.date.toDateString().split(' ')[1]}.
                   {order.date.toDateString().split(' ')[2]} &apos;
                   {order.date.toDateString().split(' ')[3].split('20')[1]}
                 </span>
               </TitleText>
-              <TitleText>893-4862 - bogifinn@gmail.com</TitleText>
-              <Text>
-                It will be held outsideIt will be held outsideIt will be held
-                outsideIt will be held outsideIt will be held outsideIt will be
-                held outsideIt will be held outsideIt will be held outsideIt
-                will be held outsideIt will be held outsideIt will be held
-                outsideIt will be held outsideIt will be held outside
-              </Text>
+              <TitleText>
+                {order.number} - {order.email}
+              </TitleText>
+              <Text>{order.other}</Text>
 
               {/* <p>{order.name}</p>
               <p>{order.number}</p>
@@ -68,7 +65,7 @@ const Receipt = ({ order, commitBooking }) => {
           </div>
         </Card>
       )}
-      <Btn type="button" onClick={commitBooking}>
+      <Btn type="button" onClick={handleClick}>
         submit
       </Btn>
     </Wrapper>

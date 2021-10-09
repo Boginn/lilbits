@@ -1,7 +1,7 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { Wrapper, Btn, Message } from './styles';
+import { Wrapper, Btn, Message, DatePickerWrapper } from './styles';
 import { useState } from 'react';
 import { CheckCircleOutline } from '@mui/icons-material/';
 
@@ -61,7 +61,7 @@ const Dates = ({ done, unDone }) => {
   return (
     <Wrapper>
       <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div>
+        <DatePickerWrapper>
           <DatePicker
             newPick={(d) => {
               unDone();
@@ -70,22 +70,23 @@ const Dates = ({ done, unDone }) => {
               setDay(d);
             }}
           />
-        </div>
-        <div>
-          {available && (
-            <Message>
-              <CheckCircleOutline
-                style={{
-                  fontSize: '210px',
-                }}
-              />
-              {day.toDateString()}
-            </Message>
-          )}
-        </div>
+        </DatePickerWrapper>
       </span>
-      {!available && <Btn onClick={checkDate}>Check if available</Btn>}
-      {message && <Message>{message}</Message>}
+      <div style={{ marginTop: '25px' }}>
+        {available && (
+          <Message>
+            <CheckCircleOutline
+              style={{
+                fontSize: '51px',
+                verticalAlign: 'middle',
+              }}
+            />
+            {day.toDateString()}
+          </Message>
+        )}
+        {!available && <Btn onClick={checkDate}>Check if available</Btn>}
+        {message && <Message>{message}</Message>}
+      </div>
     </Wrapper>
   );
 };

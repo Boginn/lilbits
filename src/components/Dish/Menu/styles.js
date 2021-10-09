@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import { Btn as Button } from '../../../material/material';
 import styled from 'styled-components';
 import colours from '../../../data/colours';
 
@@ -55,16 +55,5 @@ export const SubTitle = styled.h3`
 
 export const Btn = styled(Button)`
   && {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 4px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;

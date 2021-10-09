@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import colours from '../../data/colours';
-import Button from '@mui/material/Button';
+// import {Button} from '@mui/material/Button';
+import { Btn as Button } from '../../material/material';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,9 +12,12 @@ export const Wrapper = styled.div`
 
 export const Card = styled.div`
   display: flex;
+  text-align: center;
   padding: 25px;
-  width: 820px;
-  height: 350px;
+  /* width: 820px; */
+  width: fit-content;
+  min-height: 350px;
+  max-height: 450px;
   box-shadow: 5px 5px 15px black;
   border-radius: 10px;
   background-color: ${colours.tertiaryHalf};
@@ -22,8 +26,9 @@ export const Card = styled.div`
 export const UnderCard = styled.span`
   padding: 25px;
   /* overflow: hidden; */
-  height: 300px;
-  width: 100%;
+  min-height: 300px;
+  max-height: 400px;
+  /* width: 100%; */
   box-shadow: 5px 5px 15px black;
 
   border-radius: 3px;
@@ -68,25 +73,17 @@ export const DividerLine = styled.hr`
 
 export const BtnWrapper = styled.div`
   && {
-    width: 820px;
+    display: flex;
+    text-align: center;
+    margin: auto;
+    width: fit-content;
     padding: 25px;
   }
 `;
 
 export const Btn = styled(Button)`
   && {
-    width: 100%;
-    padding: 10px;
-    margin: auto;
     margin-top: 50px;
-    margin-bottom: 4px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
     font-size: 20pt;
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;

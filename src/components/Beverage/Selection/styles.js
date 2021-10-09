@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import colours from '../../../data/colours';
-import Button from '@mui/material/Button';
+import { Btn as Button } from '../../../material/material';
 
 export const MetaWrapper = styled.div`
   margin-left: 50px;
@@ -46,23 +46,12 @@ export const Container = styled(Grid)`
 
 export const Btn = styled(Button)`
   && {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 4px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;
 
 export const List = styled.div`
   && {
-    padding: 5px;
+    padding: 8px;
 
     border: 1px solid ${colours.tertiary};
     color: ${colours.tertiary};

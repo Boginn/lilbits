@@ -6,6 +6,7 @@ import colours from '../../data/colours';
 
 export const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 export const FormWrapper = styled.form`
@@ -14,9 +15,9 @@ export const FormWrapper = styled.form`
 
 export const Container = styled.div`
   border: 1px solid ${colours.tertiary};
-  width: 100%;
   height: 450px;
-
+  display: flex;
+  justify-content: center;
   background-color: ${colours.primary};
 `;
 

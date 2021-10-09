@@ -9,6 +9,14 @@ export const Wrapper = styled.div`
   padding: 15px;
 `;
 
+export const DatePickerWrapper = styled.div`
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid ${colours.tertiary};
+  background-color: ${colours.background};
+`;
+
 export const TextArea = styled(TextField)`
   margin: 0;
   color: white;
@@ -18,7 +26,7 @@ export const Btn = styled(Button)`
   && {
     width: 100%;
     padding: 10px;
-    margin-top: 50px;
+
     margin-bottom: 4px;
     border: 1px solid ${colours.tertiary};
     border-radius: 10px;

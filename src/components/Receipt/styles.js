@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import { Btn as Button } from '../../material/material';
 import styled from 'styled-components';
 import colours from '../../data/colours';
 
@@ -86,18 +86,7 @@ export const Description = styled.div`
 
 export const Btn = styled(Button)`
   && {
-    width: 100%;
-    padding: 10px;
-    margin: auto;
     margin-top: 50px;
-    margin-bottom: 4px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
     font-size: 20pt;
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;

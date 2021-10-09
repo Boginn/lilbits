@@ -1,12 +1,13 @@
 import { Wrapper, ListItem, List, SubTitle, Btn } from './styles';
 import { hideOverflow } from '../../../material/material';
+import '../../../media.css';
 
 const Menu = ({ dishes, setDish, getDishes, disabled }) => {
   const filterDishes = (array) => {
     return array.filter((dish) => dish);
   };
   return (
-    <Wrapper>
+    <Wrapper className="hide-xmedium">
       <SubTitle>Suggestions</SubTitle>
       <List
         container

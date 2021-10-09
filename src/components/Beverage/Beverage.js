@@ -16,6 +16,9 @@ import { useState, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
+import { displayCenter } from '../../material/material';
+
+import '../../media.css';
 
 import Selection from './Selection';
 
@@ -70,36 +73,49 @@ const Beverage = ({ order, setOrder }) => {
 
   return (
     <Wrapper>
-      <Grid container spacing={8} style={{ justifyContent: 'center' }}>
-        <Grid item xs={6}>
-          {beverage && (
-            <Card>
-              <ImageWrapper>
-                <Image src={beverage.image_url} alt="beverage" />
-              </ImageWrapper>
-              <UnderCard>
-                <Title>{beverage && beverage.name}</Title>
-                <DividerLine />
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={8}>
+          <div>
+            {beverage && (
+              <Card>
+                <ImageWrapper className="hide-xmedium">
+                  <Image
+                    src={beverage.image_url}
+                    alt="beverage"
+                    className="hide-xmedium"
+                  />
+                </ImageWrapper>
+                <UnderCard>
+                  <Title>{beverage && beverage.name}</Title>
+                  <DividerLine />
 
-                <Description>{beverage.description}</Description>
-                <SubTitle>
-                  <span>
-                    <i>{beverage && beverage.tagline}</i>
-                  </span>
-                  <span>
-                    <i> {beverage && beverage.abv}</i>%
-                  </span>
-                </SubTitle>
-              </UnderCard>
-            </Card>
-          )}
-          <BtnWrapper>
-            <Btn type="button" onClick={handleSubmit}>
-              next
-            </Btn>
-          </BtnWrapper>
+                  <Description>{beverage.description}</Description>
+                  <SubTitle>
+                    <span>
+                      <i>{beverage && beverage.tagline}</i>
+                    </span>
+                    <span>
+                      <i> {beverage && beverage.abv}</i>%
+                    </span>
+                  </SubTitle>
+                </UnderCard>
+              </Card>
+            )}
+            <BtnWrapper>
+              <Btn type="button" onClick={handleSubmit}>
+                pick <span className="hide-medium">&nbsp;beverage</span>
+              </Btn>
+              <Btn
+                disabled={disabled}
+                type="button"
+                onClick={getRandomBeverage}
+              >
+                next <span className="hide-medium">&nbsp;beverage</span>
+              </Btn>
+            </BtnWrapper>
+          </div>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4} style={displayCenter}>
           {beverages && (
             <Selection
               beverages={beverages}

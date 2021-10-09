@@ -1,6 +1,8 @@
 import { MetaWrapper, Wrapper, Container, Btn, List, ListItem } from './styles';
 import Slider from '@mui/material/Slider';
 import colours from '../../../data/colours';
+import '../../../media.css';
+
 function valuetext(value) {
   return `${value}`;
 }
@@ -53,7 +55,7 @@ const Selection = ({
           Random Beverage
         </Btn>
       </Wrapper>
-      <Wrapper>
+      <Wrapper className="hide-xmedium">
         <List
           container
           spacing={{ xs: 3, md: 3 }}

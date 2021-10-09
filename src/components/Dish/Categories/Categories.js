@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { Wrapper, Container, Item, Input, Btn, SubTitle } from './styles';
 
-const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
+const Categories = ({ categories, setCategories, disabled, getRandomDish }) => {
   const handleChange = (e, category) => {
     categories.forEach((cat) => {
       if (cat.name == category.name) {
@@ -11,9 +11,20 @@ const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
     });
   };
 
-  const makeCats = (array) => {
+  const makeCats = (categories) => {
     const cats = [];
-    array.forEach((cat) => {
+
+    categories = categories.filter(
+      (word) =>
+        word.strCategory != 'Goat' &&
+        word.strCategory != 'Breakfast' &&
+        word.strCategory != 'Dessert' &&
+        word.strCategory != 'Side' &&
+        word.strCategory != 'Starter' &&
+        word.strCategory != 'Miscellaneous'
+    );
+
+    categories.forEach((cat) => {
       cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
     });
     return cats;
@@ -24,11 +35,7 @@ const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
       let result = await axios.get(
         'https://www.themealdb.com/api/json/v1/1/categories.php'
       );
-
-      // filtering out goat and breakfast
-      result = result.data.categories.filter(
-        (word) => word.idCategory != '13' && word.idCategory != '14'
-      );
+      result = result.data.categories;
       result = makeCats(result);
       setCategories(result);
     } catch (e) {
@@ -45,7 +52,7 @@ const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
       <SubTitle>Categories</SubTitle>
       <Container
         container
-        spacing={{ xs: 3, md: 3 }}
+        spacing={{ xs: 3, md: 6 }}
         columns={{ xs: 4, sm: 8, md: 8 }}
       >
         {categories &&
@@ -60,10 +67,10 @@ const Categories = ({ categories, setCategories, getRandomDish, disabled }) => {
               </Item>
             </label>
           ))}
+        <Btn disabled={disabled} type="button" onClick={getRandomDish}>
+          next dish
+        </Btn>
       </Container>
-      <Btn disabled={disabled} type="button" onClick={getRandomDish}>
-        random dish
-      </Btn>
     </Wrapper>
   );
 };

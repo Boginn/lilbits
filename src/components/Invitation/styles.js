@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colours from '../../data/colours';
-import Button from '@mui/material/Button';
+import { Btn as Button } from '../../material/material';
 
 export const Wrapper = styled.div`
   margin-left: 50px;
@@ -46,17 +46,6 @@ export const DividerLine = styled.hr`
 export const Btn = styled(Button)`
   && {
     font-size: 20pt;
-    text-shadow: 2px 2px 0px black;
-    margin-top: 4px;
-    margin-bottom: 4px;
     height: 100px;
-    width: 100%;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;

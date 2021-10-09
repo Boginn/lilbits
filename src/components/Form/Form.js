@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { displayCenter } from '../../material/material';
 
 import {
   Wrapper,
@@ -43,8 +44,8 @@ const Form = ({ setOrder }) => {
 
   return (
     <Wrapper>
-      <Grid container spacing={6} style={{ justifyContent: 'center' }}>
-        <Grid item xs={4}>
+      <Grid container spacing={6} style={displayCenter}>
+        <Grid item xs={12} md={6}>
           <Container>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
               {form &&
@@ -73,7 +74,7 @@ const Form = ({ setOrder }) => {
             </FormWrapper>
           </Container>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Container>
             <Dates done={dateDone} unDone={dateUnDone} />
           </Container>

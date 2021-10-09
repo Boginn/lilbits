@@ -1,0 +1,10 @@
+@media (max-width: 860px) {
+  .hide-medium {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .hide-xmedium {
+    display: none;
+  }
+}

@@ -16,9 +16,12 @@ import {
   SubTitle,
   DividerLine,
 } from './styles';
+
 import { useHistory } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
+// import { displayCenter } from '../../material/material';
+import '../../media.css';
 
 const Dish = ({ order, setOrder }) => {
   const [dish, setDish] = useState(null);
@@ -39,7 +42,6 @@ const Dish = ({ order, setOrder }) => {
         'https://themealdb.com/api/json/v1/1/random.php'
       );
 
-      // console.log(properties.categories);
       if (categories) {
         let okay = false;
         let isNoneChecked = true;
@@ -90,23 +92,6 @@ const Dish = ({ order, setOrder }) => {
     }
   };
 
-  // const filterDish = () => {
-  //   categories.forEach((cat) => {
-  //     if (cat.checked && cat.strCategory == result.data.meals[0].strCategory) {
-  //       console.log('filtered');
-  //       getRandomDish();
-  //     }
-  //   });
-  // };
-
-  // const makeCats = () => {
-  //   const cats = [];
-  //   props.categories.forEach((cat) => {
-  //     cats.push({ id: cat.idCategory, name: cat.strCategory, checked: false });
-  //   });
-  //   return cats;
-  // };
-
   useEffect(() => {
     getRandomDish();
     getDishes();
@@ -114,37 +99,46 @@ const Dish = ({ order, setOrder }) => {
 
   return (
     <Wrapper>
-      <Grid container spacing={8} style={{ justifyContent: 'center' }}>
-        <Grid item xs={6}>
-          {dish && (
-            <Card>
-              <span>
-                <Image src={dish.strMealThumb} alt="food" />
-              </span>
-              <UnderCard>
-                <Title>{dish && dish.strMeal}</Title>
-                <DividerLine />
-                <Ingredients dish={dish} />
-                <SubTitle>
-                  <span>
-                    Category:
-                    <i> {dish && dish.strCategory} </i>
-                  </span>
-                  <span>
-                    Origin: <i> {dish && dish.strArea}</i>
-                  </span>
-                </SubTitle>
-              </UnderCard>
-            </Card>
-          )}
-          <BtnWrapper>
-            <Btn type="button" onClick={handleSubmit}>
-              next
-            </Btn>
-          </BtnWrapper>
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={8}>
+          <div>
+            {dish && (
+              <Card>
+                <span>
+                  <Image
+                    src={dish.strMealThumb}
+                    alt="food"
+                    className="hide-xmedium"
+                  />
+                </span>
+                <UnderCard>
+                  <Title>{dish && dish.strMeal}</Title>
+                  <DividerLine />
+                  <Ingredients dish={dish} />
+                  <SubTitle>
+                    <span>
+                      Category:
+                      <i> {dish && dish.strCategory} </i>
+                    </span>
+                    <span>
+                      Origin: <i> {dish && dish.strArea}</i>
+                    </span>
+                  </SubTitle>
+                </UnderCard>
+              </Card>
+            )}
+            <BtnWrapper>
+              <Btn type="button" onClick={handleSubmit}>
+                pick <span className="hide-medium">&nbsp;dish</span>
+              </Btn>
+              <Btn disabled={disabled} type="button" onClick={getRandomDish}>
+                next <span className="hide-medium">&nbsp;dish</span>
+              </Btn>
+            </BtnWrapper>
+          </div>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item md={4}>
           <Categories
             categories={categories}
             setCategories={setCategories}

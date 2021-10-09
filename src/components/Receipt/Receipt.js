@@ -1,5 +1,3 @@
-import Grid from '@mui/material/Grid';
-
 import {
   Wrapper,
   Card,
@@ -13,6 +11,10 @@ import {
   Description,
 } from './styles';
 
+import Grid from '@mui/material/Grid';
+import '../../media.css';
+import { displayCenter } from '../../material/material';
+
 const Receipt = ({ order, commitBooking }) => {
   const handleClick = () => {
     commitBooking();
@@ -22,8 +24,8 @@ const Receipt = ({ order, commitBooking }) => {
     <Wrapper>
       {order && (
         <Card>
-          <div>
-            <Grid item xs={12} style={{ display: 'flex' }}>
+          <div className="hide-xmedium">
+            <Grid item xs={12} style={displayCenter}>
               <DishImage src={order.dish.strMealThumb} alt="food" />
               <BeverageImage src={order.beverage.image_url} alt="food" />
             </Grid>

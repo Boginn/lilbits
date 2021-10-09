@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import colours from '../../../data/colours';
-import Button from '@mui/material/Button';
+import { Btn as Button } from '../../../material/material';
 
 export const Wrapper = styled.div`
   margin-left: 50px;
@@ -23,14 +23,13 @@ export const Container = styled(Grid)`
   && {
     width: 100%;
     justify-content: center;
-    padding: 15px;
     margin-top: 0px;
     margin-bottom: 4px;
     margin-left: 0px;
-    border: 1px solid ${colours.tertiary};
+    /* border: 1px solid ${colours.tertiary}; */
     border-radius: 10px;
     color: ${colours.tertiary};
-    background-color: ${colours.background};
+    /* background-color: ${colours.background}; */
   }
 `;
 
@@ -39,7 +38,7 @@ export const Item = styled(Grid)`
     display: flex;
     width: 140px;
     margin: 3px;
-    padding: 5px;
+    padding: 3px;
     border: 1px solid ${colours.tertiary};
     border-radius: 10px;
     color: ${colours.tertiary};
@@ -60,17 +59,6 @@ export const SubTitle = styled.h3`
 
 export const Btn = styled(Button)`
   && {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 4px;
-    border: 1px solid ${colours.tertiary};
-    border-radius: 10px;
-    color: ${colours.tertiary};
-    background-color: ${colours.background};
-    &:hover {
-      background-color: ${colours.secondary};
-    }
   }
 `;
 

@@ -7,7 +7,7 @@ import {
   Container,
   OrderInfoContainer,
   Title,
-  SubTitle,
+  Text,
   Btn,
 } from './styles';
 
@@ -44,7 +44,7 @@ const Invitation = () => {
       ) : (
         <Container>
           <Title>{title}</Title>
-          <SubTitle>{paragraphs}</SubTitle>
+          <Text>{paragraphs}</Text>
 
           <Btn
             onClick={() => {

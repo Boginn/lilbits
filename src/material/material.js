@@ -145,7 +145,7 @@ export const UnderCard = styled.span`
   min-height: 300px;
   max-height: 400px;
   box-shadow: 5px 5px 15px black;
-
+  width: 100%;
   border-radius: 3px;
   background-color: ${colours.primary};
 `;

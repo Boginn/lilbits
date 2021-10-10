@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Btn as _Btn } from '../../material/material';
-import { SubTitle as _SubTitle } from '../../material/material';
+import { Text as _Text } from '../../material/material';
 import { Container as _Container } from '../../material/material';
 import colours from '../../data/colours';
 
@@ -18,11 +18,9 @@ export const Container = styled(_Container)``;
 
 export { Title } from '../../material/material';
 
-export { Text } from '../../material/material';
-
-export const SubTitle = styled(_SubTitle)`
+export const Text = styled(_Text)`
   text-align: center;
-  /* text-shadow: 2px 2px 0px black; */
+  font-size: 14pt;
 `;
 
 export { DividerLine } from '../../material/material';

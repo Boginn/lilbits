@@ -49,7 +49,7 @@ const Receipt = ({ order, commitBooking, pushHome }) => {
 
             <OrderInfo order={order} />
           </Card>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Btn type="button" onClick={handleSubmit}>
               submit
             </Btn>

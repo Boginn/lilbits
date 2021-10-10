@@ -1,10 +1,11 @@
 import uuid from 'react-uuid';
+import colours from '../../../data/colours';
+
+import Slider from '@mui/material/Slider';
 
 import { Wrapper, Container, Btn, List, ListItem, Text } from './styles';
-import Slider from '@mui/material/Slider';
-import colours from '../../../data/colours';
-import '../../../media.css';
 import { displayBetween } from '../../../material/material';
+import '../../../media.css';
 
 function valuetext(value) {
   return `${value}`;

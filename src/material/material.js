@@ -62,7 +62,7 @@ export const Message = styled.div`
   animation: ${fadeIn} 1s linear;
 `;
 
-// text
+// typography
 export const Text = styled.p`
   color: ${colours.tertiary};
 `;
@@ -82,10 +82,8 @@ export const Container = styled.div`
   border: 1px solid ${colours.tertiary};
   border-radius: 5px;
   box-shadow: 1px 1px 1px 0px ${colours.tertiary};
-
   width: 100%;
   padding: 25px;
-
   background-color: ${colours.primary};
 `;
 
@@ -130,8 +128,6 @@ export const Card = styled.div`
   display: flex;
   text-align: center;
   padding: 25px;
-  /* width: 820px; */
-  /* width: fit-content; */
   min-height: 350px;
   max-height: 450px;
   box-shadow: 5px 5px 15px black;

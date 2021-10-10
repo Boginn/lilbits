@@ -24,6 +24,7 @@ const Invitation = () => {
   const handleClick = (route) => {
     history.push(route);
   };
+
   return (
     <Wrapper>
       {order ? (

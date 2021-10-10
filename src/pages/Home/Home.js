@@ -1,4 +1,5 @@
 import { Previews, Introduction, Invitation } from '../../components';
+
 import { Wrapper, Container } from './styles';
 import Grid from '@mui/material/Grid';
 import { displayCenter } from '../../material/material';

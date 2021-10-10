@@ -5,6 +5,7 @@ import { Wrapper, Image } from './styles';
 
 const Logo = () => {
   const history = useHistory();
+
   const handleClick = (route) => {
     history.push(route);
   };

@@ -8,15 +8,7 @@ const Ingredients = ({ dish }) => {
       ingredients = `${ingredients}, ${ingr}`;
     }
   }
-  return (
-    <Description>
-      {ingredients}
-      {/* {ingredients &&
-          ingredients.map((ingredient) => (
-            <Ingredient key={ingredient.id}>{ingredient.name}</Ingredient>
-          ))} */}
-    </Description>
-  );
+  return <Description>{ingredients}</Description>;
 };
 
 export default Ingredients;

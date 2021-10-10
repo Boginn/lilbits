@@ -5,6 +5,7 @@ import { Wrapper, Container, Title, Text, DividerLine } from './styles';
 const Introduction = () => {
   const paragraphs = content.introduction.paragraphs;
   const title = content.introduction.title;
+
   return (
     <Wrapper>
       <Container>

@@ -1,9 +1,22 @@
 import styled from 'styled-components';
 import colours from '../../data/colours';
+
 import { Btn as Button } from '../../material/material';
 import { Title as _Title } from '../../material/material';
 import { SubTitle as _SubTitle } from '../../material/material';
 import { Description as _Description } from '../../material/material';
+
+export { DividerLine } from '../../material/material';
+
+export { Card } from '../../material/material';
+
+export { UnderCard } from '../../material/material';
+
+export { Image } from '../../material/material';
+
+export { Text } from '../../material/material';
+
+export { BtnWrapper } from '../../material/material';
 
 export const Wrapper = styled.div`
   padding: 25px;
@@ -19,17 +32,9 @@ export const Description = styled(_Description)`
   }
 `;
 
-export { DividerLine } from '../../material/material';
-
-export { Card } from '../../material/material';
-
-export { UnderCard } from '../../material/material';
-
 export const ImageWrapper = styled.span`
   width: 320px;
 `;
-
-export { Image } from '../../material/material';
 
 export const Title = styled(_Title)`
   text-align: center;
@@ -39,10 +44,6 @@ export const SubTitle = styled(_SubTitle)`
   align-items: flex-end;
   height: 40px;
 `;
-
-export { Text } from '../../material/material';
-
-export { BtnWrapper } from '../../material/material';
 
 export const Btn = styled(Button)`
   && {

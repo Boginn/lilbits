@@ -1,6 +1,5 @@
 export { default as Logo } from './Logo';
 export { default as Previews } from './Previews';
-export { default as Contact } from './Contact';
 export { default as Introduction } from './Introduction';
 export { default as Invitation } from './Invitation';
 export { default as Dish } from './Dish';

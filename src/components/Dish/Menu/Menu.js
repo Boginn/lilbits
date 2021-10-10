@@ -8,6 +8,7 @@ const Menu = ({ dishes, setDish, getDishes, disabled }) => {
   const filterDishes = (array) => {
     return array.filter((dish) => dish);
   };
+
   return (
     <Wrapper className="hide-xmedium">
       <SubTitle>Suggestions</SubTitle>

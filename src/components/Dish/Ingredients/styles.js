@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colours from '../../../data/colours';
+
 import { Description as _Description } from '../../../material/material';
 
 export const Description = styled(_Description)`

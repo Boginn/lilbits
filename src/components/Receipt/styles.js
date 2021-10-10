@@ -48,7 +48,6 @@ export const TitleBorder = styled.h1`
   text-align: center;
   text-shadow: 1px 1px 0px black;
   background: ${colours.background};
-
   padding: 5px;
   border-radius: 0px;
   border: 1px solid ${colours.tertiary};
@@ -63,19 +62,15 @@ export const SubTitle = styled.p`
   border-radius: 10px;
   text-align: center;
   text-shadow: 1px 1px 0px black;
-
   background: ${colours.tertiary};
 `;
 
 export const Description = styled.div`
   border: 1px solid ${colours.tertiary};
   border-radius: 5px;
-
   box-shadow: 1px 1px 1px 0px ${colours.tertiary};
-
   padding: 10px;
   max-height: 200px;
-
   background-color: ${colours.primary};
 `;
 

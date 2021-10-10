@@ -99,3 +99,14 @@ export const form = {
     type: 'text',
   },
 };
+
+export const order = {
+  name: '',
+  number: '',
+  mail: '',
+  event: '',
+  guests: '',
+  other: '',
+  date: null,
+  isProcessing: false,
+};

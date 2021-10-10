@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import colours from '../../../data/colours';
 import { Icon as _Icon } from '@iconify/react';
 
+export { Btn } from '../../../material/material';
+
+export { Message } from '../../../material/material';
+
 export const Wrapper = styled.div`
   padding: 15px;
 `;
@@ -18,7 +22,3 @@ export const DatePickerWrapper = styled.div`
   border: 1px solid ${colours.tertiary};
   background-color: ${colours.background};
 `;
-
-export { Btn } from '../../../material/material';
-
-export { Message } from '../../../material/material';

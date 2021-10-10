@@ -4,6 +4,8 @@ import colours from '../../../data/colours';
 import { Container as _Container } from '../../../material/material';
 import { SubTitle as _SubTitle } from '../../../material/material';
 
+export { Btn } from '../../../material/material';
+
 export const Wrapper = styled(_Container)`
   margin-left: 50px;
   margin-right: 50px;
@@ -40,14 +42,13 @@ export const SubTitle = styled(_SubTitle)`
   text-align: start;
 `;
 
-export { Btn } from '../../../material/material';
-
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   &&& {
     position: relative;
     cursor: pointer;
     margin-right: 10px;
     margin-top: -1px;
+
     &:before {
       content: '';
       display: block;
@@ -55,12 +56,14 @@ export const Input = styled.input.attrs({ type: 'checkbox' })`
       height: 20px;
       background-color: ${colours.tertiaryHalf};
     }
+
     &:checked:before {
       content: '';
       width: 20px;
       height: 20px;
       background-color: ${colours.tertiary};
     }
+
     &:checked:after {
       content: '';
       width: 5px;

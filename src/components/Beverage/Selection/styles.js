@@ -1,6 +1,13 @@
-// import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import { Container as _Container } from '../../../material/material';
+
+export { Btn } from '../../../material/material';
+
+export { Text } from '../../../material/material';
+
+export { List } from '../../../material/material';
+
+export { ListItem } from '../../../material/material';
 
 export const Wrapper = styled.div`
   margin-left: 50px;
@@ -18,11 +25,3 @@ export const Container = styled(_Container)`
   width: auto;
   text-align: center;
 `;
-
-export { Btn } from '../../../material/material';
-
-export { Text } from '../../../material/material';
-
-export { List } from '../../../material/material';
-
-export { ListItem } from '../../../material/material';

@@ -1,12 +1,13 @@
-import React from 'react';
+import { Component } from 'react';
 import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
-import { Wrapper, Btn, Message, DatePickerWrapper, Icon } from './styles';
 import { useState } from 'react';
-
 import { content } from '../../../data/data';
 
-class DatePicker extends React.Component {
+import { Wrapper, Btn, Message, DatePickerWrapper, Icon } from './styles';
+import { displayCenter } from '../../../material/material';
+import 'react-day-picker/lib/style.css';
+
+class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
@@ -51,15 +52,12 @@ const Dates = ({ done, unDone }) => {
   const button = content.dates.button;
 
   const checkDate = () => {
-    // check against API if it conflicts with the schedule
     let okay = true;
     let bookings = JSON.parse(localStorage.getItem('bookings'));
 
     if (day) {
       if (bookings) {
         bookings.forEach((order) => {
-          // console.log(JSON.stringify(order.date));
-          // console.log(JSON.stringify(day));
           if (JSON.stringify(order.date) == JSON.stringify(day)) {
             setMessage(errors.unavailable);
             okay = false;
@@ -69,7 +67,6 @@ const Dates = ({ done, unDone }) => {
 
       if (okay) {
         setAvailable(true);
-
         done(day);
         setMessage(null);
       }
@@ -80,7 +77,7 @@ const Dates = ({ done, unDone }) => {
 
   return (
     <Wrapper>
-      <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <span style={displayCenter}>
         <DatePickerWrapper>
           <DatePicker
             newPick={(d) => {
@@ -93,24 +90,22 @@ const Dates = ({ done, unDone }) => {
         </DatePickerWrapper>
       </span>
       <div style={{ marginTop: '25px' }}>
+        {message && (
+          <Message>
+            <Icon icon="mdi:close-circle-outline" />
+            {message}
+          </Message>
+        )}
         {available && (
           <Message>
             <Icon icon="mdi:check-circle-outline" />
             {day.toDateString()}
           </Message>
         )}
-
         {!available && !message && (
           <Btn disabled={message} onClick={checkDate}>
             {button}
           </Btn>
-        )}
-        {message && (
-          <Message>
-            <Icon icon="mdi:close-circle-outline" />
-
-            {message}
-          </Message>
         )}
       </div>
     </Wrapper>

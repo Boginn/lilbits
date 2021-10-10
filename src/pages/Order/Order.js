@@ -7,43 +7,24 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { Receipt, Beverage, Dish, Form } from '../../components';
+
 import { Wrapper } from './styles';
+import { order as initialOrder } from '../../data/data';
 
 const Order = () => {
-  const [order, setOrder] = useState({
-    name: '',
-    number: '',
-    mail: '',
-    event: '',
-    guests: '',
-    other: '',
-    date: null,
-    isProcessing: false,
-  });
+  const [order, setOrder] = useState(initialOrder);
   const match = useRouteMatch();
   const history = useHistory();
 
   const commitBooking = (reference) => {
-    console.log(reference);
     let bookings = JSON.parse(localStorage.getItem('bookings'));
     if (!bookings) {
       bookings = [];
     }
-    bookings.push({ ...order, id: reference });
+
+    bookings.push({ ...order, id: reference, isProcessing: null });
     localStorage.setItem('bookings', JSON.stringify(bookings));
-
-    console.log(JSON.parse(localStorage.getItem('bookings')));
-
-    setOrder({
-      name: '',
-      number: '',
-      mail: '',
-      event: '',
-      guests: '',
-      other: '',
-      date: null,
-      isProcessing: false,
-    });
+    setOrder(initialOrder);
   };
 
   const pushHome = () => {
@@ -51,16 +32,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    setOrder({
-      name: '',
-      number: '',
-      mail: '',
-      event: '',
-      guests: '',
-      other: '',
-      date: null,
-      isProcessing: false,
-    });
+    setOrder(initialOrder);
   }, []);
 
   return (

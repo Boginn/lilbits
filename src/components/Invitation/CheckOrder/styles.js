@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import colours from '../../../data/colours';
+import Input from '@mui/material/Input';
+
 import { Btn as _Btn } from '../../../material/material';
 import { Title as _Title } from '../../../material/material';
 import { SubTitle as _SubTitle } from '../../../material/material';
-import Input from '@mui/material/Input';
-
-export const Wrapper = styled.div`
-  text-align: center;
-`;
 
 export { DividerLine } from '../../../material/material';
 
 export { Message } from '../../../material/material';
+
+export const Wrapper = styled.div`
+  text-align: center;
+`;
 
 export const Btn = styled(_Btn)`
   && {

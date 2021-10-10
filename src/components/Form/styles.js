@@ -27,7 +27,6 @@ export const Label = styled.label`
   && {
     text-shadow: 1px 1px 0 black;
     color: ${colours.tertiary};
-    /* text-shadow: 2px 2px 0px black; */
   }
 `;
 
@@ -44,7 +43,6 @@ export const InputField = styled(Input)`
     margin-top: 4px;
     margin-bottom: 4px;
     color: white;
-    /* background-color: ${colours.tertiary}; */
     padding-left: 10px;
   }
 `;

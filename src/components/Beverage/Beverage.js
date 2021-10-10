@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import {
   Wrapper,
   Card,
@@ -12,22 +15,19 @@ import {
   SubTitle,
   Description,
 } from './styles';
-import { useState, useEffect } from 'react';
-
-import { useHistory } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { displayCenter, displayBetween } from '../../material/material';
-
 import '../../media.css';
 
 import Selection from './Selection';
 
 const Beverage = ({ order, setOrder }) => {
+  const history = useHistory();
+
   const [beverage, setBeverage] = useState(null);
   const [beverages, setBeverages] = useState(null);
   const [range, setRange] = useState([4, 8]);
   const [disabled, setDisabled] = useState(null);
-  const history = useHistory();
 
   const handleSubmit = () => {
     setOrder({ ...order, beverage: beverage });

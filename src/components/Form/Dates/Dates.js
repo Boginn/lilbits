@@ -1,9 +1,10 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { Wrapper, Btn, Message, DatePickerWrapper } from './styles';
+import { Wrapper, Btn, Message, DatePickerWrapper, Icon } from './styles';
 import { useState } from 'react';
-import { CheckCircleOutline } from '@mui/icons-material/';
+
+import { content } from '../../../data/data';
 
 class DatePicker extends React.Component {
   constructor(props) {
@@ -45,16 +46,35 @@ const Dates = ({ done, unDone }) => {
   const [available, setAvailable] = useState(false);
   const [message, setMessage] = useState(null);
   const [day, setDay] = useState();
+
+  const errors = content.dates.errors;
+  const button = content.dates.button;
+
   const checkDate = () => {
     // check against API if it conflicts with the schedule
-    console.log(day);
-    if (day) {
-      setAvailable(true);
+    let okay = true;
+    let bookings = JSON.parse(localStorage.getItem('bookings'));
 
-      done(day);
-      setMessage(null);
+    if (day) {
+      if (bookings) {
+        bookings.forEach((order) => {
+          // console.log(JSON.stringify(order.date));
+          // console.log(JSON.stringify(day));
+          if (JSON.stringify(order.date) == JSON.stringify(day)) {
+            setMessage(errors.unavailable);
+            okay = false;
+          }
+        });
+      }
+
+      if (okay) {
+        setAvailable(true);
+
+        done(day);
+        setMessage(null);
+      }
     } else {
-      setMessage('Pick a date');
+      setMessage(errors.pickDate);
     }
   };
 
@@ -75,17 +95,23 @@ const Dates = ({ done, unDone }) => {
       <div style={{ marginTop: '25px' }}>
         {available && (
           <Message>
-            <CheckCircleOutline
-              style={{
-                fontSize: '51px',
-                verticalAlign: 'middle',
-              }}
-            />
+            <Icon icon="mdi:check-circle-outline" />
             {day.toDateString()}
           </Message>
         )}
-        {!available && <Btn onClick={checkDate}>Check if available</Btn>}
-        {message && <Message>{message}</Message>}
+
+        {!available && !message && (
+          <Btn disabled={message} onClick={checkDate}>
+            {button}
+          </Btn>
+        )}
+        {message && (
+          <Message>
+            <Icon icon="mdi:close-circle-outline" />
+
+            {message}
+          </Message>
+        )}
       </div>
     </Wrapper>
   );

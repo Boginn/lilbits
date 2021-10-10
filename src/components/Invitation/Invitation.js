@@ -16,8 +16,8 @@ import OrderInfo from '../Receipt/OrderInfo';
 
 const Invitation = () => {
   const [order, setOrder] = useState();
-  const paragraphs = content.invitation.paragraphs;
   const title = content.invitation.title;
+  const paragraphs = content.invitation.paragraphs;
 
   const history = useHistory();
 
@@ -51,7 +51,7 @@ const Invitation = () => {
               handleClick('/order/');
             }}
           >
-            Book now!
+            book now!
           </Btn>
 
           <CheckOrder setOrder={setOrder} />

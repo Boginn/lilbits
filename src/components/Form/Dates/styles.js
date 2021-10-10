@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import colours from '../../../data/colours';
-import { fadeIn } from '../../../utilities/keyframes';
+import { Icon as _Icon } from '@iconify/react';
 
 export const Wrapper = styled.div`
   padding: 15px;
+`;
+
+export const Icon = styled(_Icon)`
+  font-size: 51px;
+  vertical-align: middle;
 `;
 
 export const DatePickerWrapper = styled.div`
@@ -16,9 +21,4 @@ export const DatePickerWrapper = styled.div`
 
 export { Btn } from '../../../material/material';
 
-export const Message = styled.div`
-  color: ${colours.tertiary};
-  text-shadow: 1px 1px 0px black;
-  text-align: center;
-  animation: ${fadeIn} 1s linear;
-`;
+export { Message } from '../../../material/material';

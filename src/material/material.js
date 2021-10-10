@@ -1,3 +1,8 @@
+import styled from 'styled-components';
+import colours from '../data/colours';
+import Button from '@mui/material/Button';
+import { fadeIn } from '../utilities/keyframes';
+
 //style objects
 export const hideOverflow = {
   whiteSpace: 'nowrap',
@@ -9,10 +14,6 @@ export const displayBetween = {
   justifyContent: 'space-between',
   display: 'flex',
 };
-
-import styled from 'styled-components';
-import colours from '../data/colours';
-import Button from '@mui/material/Button';
 
 // styled components
 
@@ -52,6 +53,13 @@ export const ListItem = styled.div`
       background-color: ${colours.secondary};
     }
   }
+`;
+
+export const Message = styled.div`
+  color: ${colours.tertiary};
+  text-shadow: 1px 1px 0px black;
+  text-align: center;
+  animation: ${fadeIn} 1s linear;
 `;
 
 // text

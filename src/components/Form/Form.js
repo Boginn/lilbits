@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 import { useHistory } from 'react-router-dom';
 import { form } from '../../data/data';
 
@@ -13,20 +14,41 @@ import {
   TextArea,
   Btn,
   FormWrapper,
+  Message,
 } from './styles';
 import Grid from '@mui/material/Grid';
-import { displayCenter } from '../../material/material';
+import { displayBetween, displayCenter } from '../../material/material';
 
 const Form = ({ setOrder }) => {
   const history = useHistory();
   const [date, setDate] = useState();
+  const [message, setMessage] = useState();
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const onSubmit = (d) => {
-    const result = { ...d, date };
-    setOrder(result);
-    history.push('/order/dish');
+    let okay = true;
+    const bookings = JSON.parse(localStorage.getItem('bookings'));
+    if (bookings) {
+      bookings.forEach((order) => {
+        if (d.mail == order.mail) {
+          setMessage(form.errors.mailMatch);
+          okay = false;
+        }
+      });
+    }
+
+    if (okay) {
+      const result = { ...d, date, isProcessing: true };
+      console.log(date);
+      setOrder(result);
+
+      history.push('/order/dish');
+    }
   };
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -46,28 +68,47 @@ const Form = ({ setOrder }) => {
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
               {form &&
                 form.inputs.map((item) => (
-                  <Label key={item.key}>
-                    {item.label}
-                    <InputField
-                      color={item.color}
-                      {...register(item.key)}
-                      type={item.type}
-                    />
-                  </Label>
+                  <>
+                    <Label key={item.key}>
+                      <span style={displayBetween}>
+                        {item.label}
+                        {message && item.key == 'mail' && (
+                          <Message>{message}</Message>
+                        )}
+                        <Message>
+                          <ErrorMessage errors={errors} name={item.key} />
+                        </Message>
+                      </span>
+                      <InputField
+                        color={item.color}
+                        {...register(item.key, {
+                          required: form.errors.required,
+                        })}
+                        type={item.type}
+                      />
+                    </Label>
+                  </>
                 ))}
 
               <Label>
                 {form.textarea.label}
                 <TextArea
+                  {...register(form.textarea.key, {
+                    maxLength: {
+                      value: 200,
+                      message: form.errors.maxLength,
+                    },
+                  })}
                   color={form.textarea.color}
-                  {...register(form.textarea.key)}
                   multiline
                   rows={2}
                   rowsmax={4}
-                  maxLength={200}
                   type={form.textarea.type}
                 />
               </Label>
+              <Message>
+                <ErrorMessage errors={errors} name={form.textarea.key} />
+              </Message>
             </FormWrapper>
           </Container>
         </Grid>

@@ -5,8 +5,14 @@ import colours from '../../data/colours';
 
 import { Container as _Container } from '../../material/material';
 import { Btn as _Btn } from '../../material/material';
+import { Message as _Message } from '../../material/material';
 
 export const Wrapper = styled.div``;
+
+export const Message = styled(_Message)`
+  display: inline;
+  color: ${colours.error};
+`;
 
 export const FormWrapper = styled.form`
   padding: 25px;
@@ -37,7 +43,8 @@ export const InputField = styled(Input)`
     width: 100%;
     margin-top: 4px;
     margin-bottom: 4px;
-    background-color: ${colours.tertiary};
+    color: white;
+    /* background-color: ${colours.tertiary}; */
     padding-left: 10px;
   }
 `;

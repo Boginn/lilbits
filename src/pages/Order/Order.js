@@ -10,7 +10,16 @@ import { Receipt, Beverage, Dish, Form } from '../../components';
 import { Wrapper } from './styles';
 
 const Order = () => {
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState({
+    name: '',
+    number: '',
+    mail: '',
+    event: '',
+    guests: '',
+    other: '',
+    date: null,
+    isProcessing: false,
+  });
   const match = useRouteMatch();
   const history = useHistory();
 
@@ -25,7 +34,16 @@ const Order = () => {
 
     console.log(JSON.parse(localStorage.getItem('bookings')));
 
-    setOrder(null);
+    setOrder({
+      name: '',
+      number: '',
+      mail: '',
+      event: '',
+      guests: '',
+      other: '',
+      date: null,
+      isProcessing: false,
+    });
   };
 
   const pushHome = () => {
@@ -33,7 +51,16 @@ const Order = () => {
   };
 
   useEffect(() => {
-    setOrder(null);
+    setOrder({
+      name: '',
+      number: '',
+      mail: '',
+      event: '',
+      guests: '',
+      other: '',
+      date: null,
+      isProcessing: false,
+    });
   }, []);
 
   return (
@@ -65,6 +92,7 @@ const Order = () => {
           </Route>
           <Route path={`${match.path}`}>
             <Form
+              order={order}
               setOrder={(f) => {
                 setOrder(f);
               }}

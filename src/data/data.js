@@ -18,12 +18,22 @@ export const content = {
       'Dishes are presented as suggestions based on your category selection. We are happy to advice you personally if you contact us.',
     ],
   },
+
   checkOrder: {
     title: 'Check your Order',
     subTitle: 'Enter your e-mail or reference number',
     paragraphs: [
       `Please contact us if you can not find your order in our system.`,
     ],
+    button: 'check',
+  },
+
+  dates: {
+    errors: {
+      pickDate: 'Pick a Date',
+      unavailable: 'Unavailable',
+    },
+    button: 'check if available',
   },
 
   receipt: {
@@ -62,27 +72,14 @@ export const content = {
       },
     ],
   },
-
-  contact: {
-    mail: 'lilbits@lilbits.com',
-    items: [
-      {
-        description: 'facebook/lilbits',
-        link: 'http://facebook.com/lilbits',
-      },
-      {
-        description: 'twitter/lilbits',
-        link: 'http://twitter.com/lilbits',
-      },
-      {
-        description: 'instagram/lilbits',
-        link: 'http://instagram.com/lilbits',
-      },
-    ],
-  },
 };
 
 export const form = {
+  errors: {
+    required: 'This field is required',
+    maxLength: 'Maximum length is 200 characters',
+    mailMatch: 'E-mail address already in use',
+  },
   inputs: [
     { label: 'Name', color: 'warning', key: 'name', type: 'text' },
     { label: 'Phone Number', color: 'warning', key: 'number', type: 'number' },

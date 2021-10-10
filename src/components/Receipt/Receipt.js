@@ -37,7 +37,7 @@ const Receipt = ({ order, commitBooking, pushHome }) => {
 
   return (
     <Wrapper>
-      {order ? (
+      {order.isProcessing ? (
         <Grid container spacing={5} style={displayCenter}>
           <Card>
             <div className="hide-xmedium">
@@ -49,22 +49,28 @@ const Receipt = ({ order, commitBooking, pushHome }) => {
 
             <OrderInfo order={order} />
           </Card>
-          <Btn type="button" onClick={handleSubmit}>
-            submit
-          </Btn>
+          <Grid item xs={6}>
+            <Btn type="button" onClick={handleSubmit}>
+              submit
+            </Btn>
+          </Grid>
         </Grid>
       ) : (
         <Grid container spacing={5} style={displayCenter}>
-          <Description>
-            <span style={displayBetween}>
-              <Title>{title}</Title>
-              <TitleBorder>{reference}</TitleBorder>
-            </span>
-            <TitleText>{subTitle}</TitleText>
-          </Description>
-          <Btn type="button" onClick={handleClick}>
-            okay
-          </Btn>
+          <Grid item xs={8}>
+            <Description>
+              <span style={displayBetween}>
+                <Title>{title}</Title>
+                <TitleBorder>{reference}</TitleBorder>
+              </span>
+              <TitleText>{subTitle}</TitleText>
+            </Description>
+          </Grid>
+          <Grid item xs={6}>
+            <Btn type="button" onClick={handleClick}>
+              okay
+            </Btn>
+          </Grid>
         </Grid>
       )}
     </Wrapper>

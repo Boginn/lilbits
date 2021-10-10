@@ -5,7 +5,8 @@ import { content } from '../../../data/data';
 
 import { Wrapper, Btn, Message, DatePickerWrapper, Icon } from './styles';
 import { displayCenter } from '../../../material/material';
-import 'react-day-picker/lib/style.css';
+// import 'react-day-picker/lib/style.css';
+import './style.css';
 
 class DatePicker extends Component {
   constructor(props) {

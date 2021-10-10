@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { content } from '../../../data/data';
 
-import { Wrapper, Container, Title, SubTitle, Btn, InputField } from './styles';
+import {
+  Wrapper,
+  Container,
+  Title,
+  SubTitle,
+  Btn,
+  InputField,
+  Message,
+} from './styles';
 
 const CheckOrder = ({ setOrder }) => {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState({ target: { value: null } });
+  const [message, setMessage] = useState();
+
   const title = content.checkOrder.title;
   const subTitle = content.checkOrder.subTitle;
   const button = content.checkOrder.button;
@@ -19,8 +29,18 @@ const CheckOrder = ({ setOrder }) => {
         ) {
           setOrder(order);
           console.log(order);
+        } else {
+          setMessage('No match');
         }
       });
+    } else {
+      setMessage('No match');
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleClick();
     }
   };
 
@@ -29,8 +49,16 @@ const CheckOrder = ({ setOrder }) => {
       <Container>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
-        <InputField onChange={setInput} color={'warning'} type="text" />
+        <InputField
+          onKeyDown={handleKeyDown}
+          onChange={(e) => {
+            setInput(e), setMessage(null);
+          }}
+          color={'warning'}
+          type="text"
+        />
         <Btn onClick={handleClick}>{button}</Btn>
+        {message && <Message>{message}</Message>}
       </Container>
     </Wrapper>
   );

@@ -11,6 +11,8 @@ export const Wrapper = styled.div`
 
 export { DividerLine } from '../../../material/material';
 
+export { Message } from '../../../material/material';
+
 export const Btn = styled(_Btn)`
   && {
     width: fit-content;

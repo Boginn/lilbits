@@ -6,7 +6,7 @@ import { Home, Order } from './pages';
 
 function App() {
   useEffect(() => {
-    //  localStorage.clear();
+    // localStorage.clear();
   });
 
   return (
